@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="381.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.LogInController">
+   <children>
+      <ImageView fitHeight="403.0" fitWidth="737.0" layoutX="-2.0" preserveRatio="true" smooth="false">
+         <image>
+            <Image url="@pic-1.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="productionCompanyName" layoutX="195.0" layoutY="100.0" opacity="0.92" prefHeight="40.0" prefWidth="492.0" promptText="Enter Production Company ID">
+         <effect>
+            <Glow />
+         </effect>
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </TextField>
+      <Button layoutX="430.0" layoutY="202.0" mnemonicParsing="false" onAction="#onLogInClick" prefHeight="34.0" prefWidth="126.0" text="Log In">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow>
+                     <input>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow>
+                                 <input>
+                                    <Glow />
+                                 </input>
+                                 <color>
+                                    <Color red="0.9578947424888611" green="0.8727485537528992" blue="0.8727485537528992" />
+                                 </color>
+                              </Shadow>
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </input></Shadow>
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="1.0" green="0.970370352268219" blue="0.970370352268219" />
+                     </color></Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="14.0" layoutY="95.0" prefHeight="50.0" prefWidth="165.0" text="Production Company:">
+         <font>
+            <Font name="Times New Roman Bold" size="16.0" />
+         </font>
+         <effect>
+            <Lighting bumpInput="$null" diffuseConstant="0.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+               <light>
+                  <Light.Distant azimuth="0.0" elevation="18.58">
+                     <color>
+                        <Color red="0.25354740023612976" green="0.5899999737739563" blue="0.1770000010728836" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </Label>
+      <Button layoutX="273.0" layoutY="202.0" mnemonicParsing="false" onAction="#onResetClick" prefHeight="34.0" prefWidth="126.0" text="Reset">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant azimuth="97.84" />
+               </light>
+            </Lighting>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

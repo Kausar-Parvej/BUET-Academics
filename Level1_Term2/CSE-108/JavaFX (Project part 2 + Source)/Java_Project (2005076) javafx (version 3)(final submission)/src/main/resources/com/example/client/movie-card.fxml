@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane onMouseEntered="#showSellButton" onMouseExited="#hideSellButton" prefHeight="185.0" prefWidth="543.0" styleClass="root" stylesheets="@playerCard.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.MovieCardController">
+   <children>
+      <VBox alignment="CENTER_RIGHT" fillWidth="false" layoutX="347.0" prefHeight="185.0" prefWidth="194.0" style="-fx-background-color: #ffcc00;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="347.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="playerImage" fitHeight="161.0" fitWidth="162.0" nodeOrientation="INHERIT" pickOnBounds="true" translateX="-12.0" VBox.vgrow="NEVER" />
+         </children>
+      </VBox>
+      <VBox fillWidth="false" layoutY="5.0" prefHeight="185.0" prefWidth="549.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" fillHeight="false" layoutX="10.0" layoutY="10.0" prefHeight="119.0" prefWidth="338.0" style="-fx-background-color: #00008b;" translateX="3.0">
+               <children>
+                  <Label fx:id="playerNameLabel" prefHeight="24.0" prefWidth="194.0" text="Movie Name" translateX="4.0">
+                     <HBox.margin>
+                        <Insets left="10.0" right="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Separator orientation="VERTICAL" prefHeight="86.0" prefWidth="6.0" style="-fx-: #aaaaaa; -fx-background-color: #5DE31D;">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <Label fx:id="playerPositionLabel" prefHeight="26.0" prefWidth="85.0" text="Release Year">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" fillHeight="false" layoutX="10.0" layoutY="44.0" prefHeight="70.0" prefWidth="339.0" style="-fx-background-color: #000000;" translateX="3.0">
+               <children>
+                  <Button fx:id="playerDetailsButton" mnemonicParsing="false" onAction="#onMovieDetailsClick" prefHeight="26.0" prefWidth="95.0" style="-fx-background-color: #AA5518;" text="Movie Details">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="playerSellButton" mnemonicParsing="false" onAction="#onTransferClick" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: #6D0E10;" text="Transfer">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="playerPriceLabel" prefHeight="18.0" prefWidth="126.0" text="Profit: 150,000 $">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Cambria" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

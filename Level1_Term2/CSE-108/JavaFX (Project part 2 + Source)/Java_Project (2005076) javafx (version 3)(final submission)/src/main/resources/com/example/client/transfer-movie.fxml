@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="509.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.TransferMovieController">
+   <children>
+      <ImageView fitHeight="509.0" fitWidth="578.0" pickOnBounds="true">
+         <image>
+            <Image url="@my_image4.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="pcTable" layoutX="126.0" layoutY="96.0" prefHeight="294.0" prefWidth="326.0" style="-fx-background-color: #A700CC;">
+         <columns>
+            <TableColumn fx:id="pcColumn" prefWidth="322.59996032714844" text="Select Production Company" />
+         </columns>
+      </TableView>
+      <Button layoutX="169.0" layoutY="402.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="37.0" prefWidth="112.0" style="-fx-background-color: #5C5CFF;" text="Back" />
+      <Button layoutX="303.0" layoutY="402.0" mnemonicParsing="false" onAction="#onTransferClick" prefHeight="37.0" prefWidth="112.0" style="-fx-background-color: #8A8AFF;" text="Transfer" />
+      <Label fx:id="thisPC" alignment="CENTER" layoutX="112.0" layoutY="14.0" prefHeight="58.0" prefWidth="365.0" text="Production Company" textFill="#00ff37">
+         <font>
+            <Font name="Times New Roman Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="transferMovie" alignment="CENTER" layoutX="160.0" layoutY="64.0" prefHeight="20.0" prefWidth="253.0" text="Movie" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

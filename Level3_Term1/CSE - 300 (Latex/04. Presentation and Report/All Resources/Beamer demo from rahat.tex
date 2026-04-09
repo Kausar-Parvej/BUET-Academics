@@ -1,0 +1,370 @@
+\documentclass{beamer}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usetheme{Madrid}
+
+
+
+% \AtBeginSection
+% {
+% 	\begin{frame}
+% 		\frametitle{Table of Contents}
+% 		\tableofcontents[currentsection]
+% 	\end{frame}
+% }
+
+\begin{document}
+	
+	% \frame{\titlepage}
+	
+%	\begin{frame}
+%		\frametitle{Table of Contents}
+%		\tableofcontents
+%	\end{frame}
+	
+	\section{}
+		\begin{frame}
+			\frametitle{Deletion in AVL Tree}
+   Two steps--
+	\begin{enumerate}
+	    \item Perform BST Deletion
+            \item Rebalance if tree becomes imbalanced
+	\end{enumerate}
+		\end{frame}
+
+	\section{ }
+		\begin{frame}{A Short Overview of Standard BST Deletion}
+			 3 cases in BST Deletion--
+                \begin{enumerate}
+                    \item having zero child
+                    \item having one child 
+                    \item having two children 
+                \end{enumerate}
+		\end{frame}
+
+	\section{}
+		\begin{frame}{AVL Tree deletion}
+    \begin{center}
+       \begin{tikzpicture}[
+    C/.style = {draw, circle, minimum size=1.5em, inner sep=0pt,
+                label={[font=\scriptsize, text=blue, inner sep=0pt]330:$##1$}},
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm},
+    level 3/.style={sibling distance=1.5cm}
+]
+\node [C] {14}
+    child {node[C] {11}
+        child {node[C]{7}
+            child {node[C]{4}}
+            child {node[C]{8}}
+        }
+    child{node[C]{12}}
+    }
+    child {node[C] {19}
+        child {node[C]{17}
+            child {node[C]{16}}
+            child[missing]{} 
+        }
+        child {node[C]{53}
+            child {node[C]{20}}
+             child[missing]{} 
+        }
+    };
+\end{tikzpicture}
+
+
+    \end{center}
+     Delete 12 (Leaf node)
+\end{frame}
+
+	\section{}
+	\begin{frame}{AVL Tree deletion}
+		Creates imbalance
+  \begin{center}
+       \begin{tikzpicture}[
+    C/.style = {draw, circle, minimum size=1.5em, inner sep=0pt,
+                label={[font=\scriptsize, text=blue, inner sep=0pt]330:$##1$}},
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm},
+    level 3/.style={sibling distance=1.5cm}
+]
+\node [C=0] {14}
+    child {node[C=2,red] {11}
+        child {node[C=0]{7}
+            child {node[C=0]{4}}
+            child {node[C=0]{8}}
+        }
+   child[missing]{}
+    }
+    child {node[C=0] {19}
+        child {node[C=1]{17}
+            child {node[C=0]{16}}
+            child[missing]{} 
+        }
+        child {node[C=1]{53}
+            child {node[C=0]{20}}
+             child[missing]{} 
+        }
+    };
+\end{tikzpicture}
+
+
+    \end{center}
+	\end{frame}
+
+	\section{}
+	\begin{frame}{AVL Tree Deletion}
+		After rebalancing--
+  \begin{center}
+       \begin{tikzpicture}[
+    C/.style = {draw, circle, minimum size=1.5em, inner sep=0pt,
+                label={[font=\scriptsize, text=blue, inner sep=0pt]330:$##1$}},
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm},
+    level 3/.style={sibling distance=1.5cm}
+]
+\node [C=0] {14}
+    child {node[C=-1] {7}
+        child {node[C=0]{4}}
+      child {node[C=1]{11}
+          child {node[C=0]{8}}
+           child[missing]{}   
+      }
+    }
+    child {node[C=0] {19}
+        child {node[C=1]{17}
+            child {node[C=0]{16}}
+            child[missing]{} 
+        }
+        child {node[C=1]{53}
+            child {node[C=0]{20}}
+             child[missing]{} 
+        }
+    };
+\end{tikzpicture}
+
+
+    \end{center}
+  
+	\end{frame}
+
+	\section{}
+		\begin{frame}{AVL Tree Deletion}
+		Another AVL Tree
+   \begin{center}
+       \begin{tikzpicture}[
+    C/.style = {draw, circle, minimum size=1.5em, inner sep=0pt,
+                label={[font=\scriptsize, text=blue, inner sep=0pt]330:$##1$}},
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm},
+    level 3/.style={sibling distance=1.5cm}
+]
+\node [C=-1] {14}
+    child {node[C=1] {11}
+          child {node[C=0]{8}}
+            child[missing]{}
+    }
+    child {node[C=-1] {19}
+        child {node[C=1]{17}
+        }
+        child {node[C=-1]{25}
+            child[missing]{}
+            child {node[C=0]{30}}
+        }
+    };
+\end{tikzpicture}
+
+
+    \end{center}
+   Delete 11( having one child)
+		\end{frame}
+	
+	\section{}
+		\begin{frame}{AVL Tree Deletion}
+			Look Node 14
+    \begin{center}
+       \begin{tikzpicture}[
+    C/.style = {draw, circle, minimum size=1.5em, inner sep=0pt,
+                label={[font=\scriptsize, text=blue, inner sep=0pt]330:$##1$}},
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm},
+    level 3/.style={sibling distance=1.5cm}
+]
+\node [C=-2,red] {14}
+    child {node[C=1] {8}
+          child[missing]{}
+            child[missing]{}
+    }
+    child {node[C=-1] {19}
+        child {node[C=1]{17}
+        }
+        child {node[C=-1]{25}
+            child[missing]{}
+            child {node[C=0]{30}}
+        }
+    };
+\end{tikzpicture}
+    \end{center}
+   Rebalance needed!
+		\end{frame}
+  \section{}
+  \begin{frame}{AVL Tree Deletion}
+			After rebalancing--
+    \begin{center}
+       \begin{tikzpicture}[
+    C/.style = {draw, circle, minimum size=1.5em, inner sep=0pt,
+                label={[font=\scriptsize, text=blue, inner sep=0pt]330:$##1$}},
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm},
+    level 3/.style={sibling distance=1.5cm}
+]
+\node [C=0] {19}
+child{node[C=0]{14}
+child{node[C=0]{8}}
+child{node[C=0]{17}}}
+child{node[C=-1]{25}
+child[missing]{}
+child{node[C=0]{30}}}
+
+;
+
+\end{tikzpicture}
+    \end{center}
+    \end{frame}
+   \section{}
+   \begin{frame}{AVL Tree Deletion}
+   Last case--
+   
+   \begin{center}
+       \begin{tikzpicture}
+       [
+    C/.style = {draw, circle, minimum size=1.5em, inner sep=0pt,
+                label={[font=\scriptsize, text=blue, inner sep=0pt]330:$##1$}},
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm},
+    level 3/.style={sibling distance=1.5cm}
+]
+\node [C=1] {19}
+child{node[C=1]{14}
+child{node[C=1]{8}
+child{node[C=0]{4}}
+child[missing]{}
+}
+child{node[C=0]{17}}}
+child{node[C=-1]{25}
+child[missing]{}
+child{node[C=0]{30}}}
+
+; 
+       \end{tikzpicture}
+   \end{center}
+   Delete 14 (having two children)
+       
+   \end{frame}
+      \section{}
+   \begin{frame}{AVL Tree Deletion}
+   Again imbalance--
+   \begin{center}
+       \begin{tikzpicture}
+       [
+    C/.style = {draw, circle, minimum size=1.5em, inner sep=0pt,
+                label={[font=\scriptsize, text=blue, inner sep=0pt]330:$##1$}},
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm},
+    level 3/.style={sibling distance=1.5cm}
+]
+\node [C=1] {19}
+child{node[C=2,red]{17}
+child{node[C=1]{8}
+child{node[C=0]{4}}
+child[missing]{}
+}
+child[missing]{}}
+child{node[C=-1]{25}
+child[missing]{}
+child{node[C=0]{30}}}
+
+; 
+       \end{tikzpicture}
+   \end{center}
+   
+       
+   \end{frame}
+         \section{}
+   \begin{frame}{AVL Tree Deletion}
+   After rebalancing--
+   \begin{center}
+       \begin{tikzpicture}
+       [
+    C/.style = {draw, circle, minimum size=1.5em, inner sep=0pt,
+                label={[font=\scriptsize, text=blue, inner sep=0pt]330:$##1$}},
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm},
+    level 3/.style={sibling distance=1.5cm}
+]
+\node [C=0] {19}
+child{node[C=0]{8}
+child{node[C=0]{4}
+}
+child{node[C=0]{17}}
+}
+child{node[C=-1]{25}
+child[missing]{}
+child{node[C=0]{30}}}
+
+; 
+       \end{tikzpicture}
+   \end{center}  
+   \end{frame}
+  \begin{frame}{Time Complexity analysis of deletion in AVL Tree}
+    \begin{algorithm}
+    \caption{Delete operation in AVL tree}
+    \begin{algorithmic}[1]
+    \Function{Delete}{$root, key$}
+        \If{$root$ is null}
+            \State \Return $root$                      \Comment{O(1)}
+        \EndIf
+        \If{$key < root.val$}
+            \State $root.left \gets \textsc{Delete}(root.left, key)$   \Comment{O(log n) on average}
+        \ElsIf{$key > root.val$}
+            \State $root.right \gets \textsc{Delete}(root.right, key)$ \Comment{O(log n) on average}
+        \Else
+            \If{$root$ has no left child}
+                \State $temp \gets root.right$
+                \State $root \gets$ null
+                \State \Return $temp$                              \Comment{O(1)}
+            \ElsIf{$root$ has no right child}
+                \State $temp \gets root.left$
+                \State $root \gets$ null
+                \State \Return $temp$                              \Comment{O(1)}
+            \Else
+                \State $temp \gets \textsc{FindMinValueNode}(root.right)$   \Comment{O(log n) on average}
+                \State $root.val \gets temp.val$
+                \State $root.right \gets \textsc{Delete}(root.right, temp.val)$  \Comment{O(log n) on average}
+            \EndIf
+        \EndIf
+        \State $root.height \gets 1 + \max(\textsc{GetHeight}(root.left), \textsc{GetHeight}(root.right))$ \Comment{O(1)}
+        \State $balance \gets \textsc{GetBalance}(root)$                    \Comment{O(1)}
+        \If{$balance > 1$ and $\textsc{GetBalance}(root.left) \geq 0$}
+            \State \Return $\textsc{RotateRight}(root)$                     \Comment{O(1)}
+        \EndIf
+        \If{$balance < -1$ and $\textsc{GetBalance}(root.right) \leq 0$}
+            \State \Return $\textsc{RotateLeft}(root)$                      \Comment{O(1)}
+        \EndIf
+        \If{$balance > 1$ and $\textsc{GetBalance}(root.left) < 0$}
+            \State $root.left \gets \textsc{RotateLeft}(root.left)$         \Comment{O(1)}
+            \State \Return $\textsc{RotateRight}(root)$                     \Comment{O(1)}
+        \EndIf
+        \If{$balance < -1$ and $\textsc{GetBalance}(root.right) > 0$}
+            \State $root.right \gets \textsc{RotateRight}(root.right)$      \Comment{O(1)}
+            \State \Return $\textsc{RotateLeft}(root)$                      \Comment{O(1)}
+        \EndIf
+        \State \Return $root$                                              \Comment{O(1)}
+    \EndFunction
+    \end{algorithmic}
+    \end{algorithm}
+\end{frame}
+\end{document}

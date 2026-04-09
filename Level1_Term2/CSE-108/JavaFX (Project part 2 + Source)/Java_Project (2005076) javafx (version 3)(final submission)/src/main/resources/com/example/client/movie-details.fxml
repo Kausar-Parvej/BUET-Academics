@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="548.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.MovieDetailsController">
+   <children>
+      <StackPane alignment="TOP_CENTER" layoutX="487.0" layoutY="14.0" prefHeight="520.0" prefWidth="549.0" style="-fx-background-color: linear-gradient(to bottom left, #00C5DF, #1F2223);;" />
+      <Label layoutX="529.0" layoutY="38.0" prefHeight="56.0" prefWidth="484.0" style="-fx-background-color: #202334;" text="MOVIE DETAILS" textFill="#00ff3a">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="Times New Roman Bold" size="20.0" />
+         </font>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
+      <VBox layoutX="580.0" layoutY="94.0" prefHeight="396.0" prefWidth="455.0" translateX="-20.0">
+         <children>
+            <VBox prefHeight="78.0" prefWidth="635.0">
+               <children>
+                  <HBox fillHeight="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <Label prefHeight="39.0" prefWidth="318.0" text="Title  :">
+                           <font>
+                              <Font name="Rockwell" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="pName" prefHeight="39.0" prefWidth="375.0" text="Movie" wrapText="true">
+                           <font>
+                              <Font name="Rockwell Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fillHeight="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #888c8d;">
+                     <children>
+                        <Label prefHeight="41.0" prefWidth="318.0" text="Released Year  :" textFill="WHITE">
+                           <font>
+                              <Font name="Rockwell" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="pValue" prefHeight="39.0" prefWidth="365.0" text="Year" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font name="Rockwell Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="635.0" style="-fx-background-color: #414141;">
+               <children>
+                  <HBox fillHeight="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <Label prefHeight="39.0" prefWidth="318.0" text="Production Company  :" textFill="#151414">
+                           <font>
+                              <Font name="Rockwell" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="pClub" prefHeight="39.0" prefWidth="360.0" text="PC" textFill="#363030" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font name="Rockwell Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fillHeight="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #888c8d;">
+                     <children>
+                        <Label prefHeight="41.0" prefWidth="318.0" text="Genre  :" textFill="WHITE">
+                           <font>
+                              <Font name="Rockwell" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="pCountry" prefHeight="39.0" prefWidth="358.0" text="Movie Genre" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font name="Rockwell Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="78.0" prefWidth="635.0">
+               <children>
+                  <HBox fillHeight="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <Label prefHeight="39.0" prefWidth="318.0" text="Run Time  :">
+                           <font>
+                              <Font name="Rockwell" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="pHeight" prefHeight="39.0" prefWidth="355.0" text="Duration" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font name="Rockwell Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fillHeight="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #888c8d;">
+                     <children>
+                        <Label prefHeight="41.0" prefWidth="318.0" text="Budget  :" textFill="WHITE">
+                           <font>
+                              <Font name="Rockwell" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="pWeight" prefHeight="39.0" prefWidth="357.0" text="Budget" textFill="#fffdfd" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font name="Rockwell Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="78.0" prefWidth="635.0" style="-fx-background-color: #414141;">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="39.0" prefWidth="318.0" style="-fx-background-color: #ffffff;" text="Revenue  :" textFill="#262323">
+                           <font>
+                              <Font name="Rockwell" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="pPosition" prefHeight="39.0" prefWidth="357.0" style="-fx-background-color: #ffffff;" text="Revenue" textFill="#282626" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font name="Rockwell Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fillHeight="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #888c8d;">
+                     <children>
+                        <Label prefHeight="41.0" prefWidth="318.0" text="Profit  :" textFill="WHITE">
+                           <font>
+                              <Font name="Rockwell" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="pNumber" prefHeight="39.0" prefWidth="349.0" text="Profit" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font name="Rockwell Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="78.0" prefWidth="635.0">
+               <children>
+                  <HBox fillHeight="false" prefHeight="66.0" prefWidth="455.0" style="-fx-border-color: #000000;" translateX="-3.0" translateY="5.0">
+                     <children>
+                        <Label prefHeight="39.0" prefWidth="126.0" text="Trailer  :" textFill="WHITE" translateY="10.0">
+                           <font>
+                              <Font name="Rockwell" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="trailer" prefHeight="39.0" prefWidth="311.0" style="-fx-background-color: #FFFFFF;" text="Watch Official YouTube Trailer" textFill="#ff4400" textOverrun="CENTER_WORD_ELLIPSIS" translateY="10.0" underline="true" wrapText="true">
+                           <font>
+                              <Font name="Times New Roman Bold Italic" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                     </children></HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <Separator layoutX="500.0" layoutY="108.0" maxHeight="379.0" orientation="VERTICAL" prefHeight="364.0" prefWidth="31.0">
+         <effect>
+            <Lighting specularConstant="2.0" specularExponent="28.81">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.8421052694320679" green="0.040545810014009476" blue="0.040545810014009476" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect></Separator>
+      <HBox fillHeight="false" layoutX="529.0" layoutY="483.0" prefHeight="39.0" prefWidth="484.0" style="-fx-background-color: #000000;" />
+      <ImageView fx:id="playerImage" fitHeight="449.0" fitWidth="455.0" layoutX="16.0" layoutY="51.0" nodeOrientation="INHERIT" pickOnBounds="true" />
+   </children>
+</AnchorPane>

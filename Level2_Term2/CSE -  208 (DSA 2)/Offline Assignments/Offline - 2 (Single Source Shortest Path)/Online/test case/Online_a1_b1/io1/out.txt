@@ -1,0 +1,5 @@
+Minimum total time: 480
+
+Paths:
+0 -> 7 -> 1 (time: 210)
+1 -> 6 -> 4 -> 0 (time: 270)

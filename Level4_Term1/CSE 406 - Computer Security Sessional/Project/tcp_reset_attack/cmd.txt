@@ -1,0 +1,7 @@
+sudo venv/bin/python auto_youtube_rst_attack.py
+
+ip link // attacker machine mac
+
+arp -a // on victim's machine
+
+netstat -s // on victim's machine

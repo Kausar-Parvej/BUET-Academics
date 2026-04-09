@@ -1,0 +1,19 @@
+# Enter privilege mode
+en
+
+# Enter global configuration mode
+conf t
+
+# Enter line configuration mode
+line console 0
+
+# serially keep exiting from modes
+exit
+
+# Hotkeys
+Enter Key -> Displays the next line.
+Spacebar -> Displays the next page.
+Any other key -> Ends the display string, returning to privileged EXEC mode.
+Ctrl-C -> When in any configuration mode, ends the configuration mode and returns to privileged EXEC mode.
+Ctrl-Z -> When in any configuration mode, ends the configuration mode and returns to privileged EXEC mode.
+Ctrl-Shift-6 -> All-purpose break sequence used to abort DNS lookups, traceroutes, pings, etc.

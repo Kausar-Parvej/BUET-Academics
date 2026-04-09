@@ -1,0 +1,39 @@
+sudo sysctl -w kernel.randomize_va_space=0
+sudo ln -sf /bin/zsh /bin/sh
+
+
+gcc -m32 -o stack -z execstack -fno-stack-protector stack.c
+sudo chown root stack
+sudo chmod 4755 stack
+
+
+touch badfile
+gcc -m32 -o stack_dbg -g -z execstack -fno-stack-protector stack.c
+
+
+
+without gdb:
+------------
+cd .
+`pwd`/stack  (run with full path)
+
+with gdb:
+----------
+cd .
+gdb stack_dbg
+(break ba run er age)
+unset environment LINES
+unset environment Columns
+
+//----------------------------//
+printing exact adreess:
+
+printf("greet: %p\n", greet); greet is function.
+
+
+
+
+caller(pushes): params->return address
+                        
+calle(pushes): ebp->local variables;  
+stack: params->return address->ebp->local variables;

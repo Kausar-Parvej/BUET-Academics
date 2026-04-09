@@ -1,0 +1,49 @@
+🟢 MODES
+i           → Insert mode
+Esc         → Normal mode
+:           → Command mode
+v           → Visual mode
+
+📄 FILE OPERATIONS
+:w          → Save
+:q          → Quit
+:wq / ZZ    → Save and quit
+:q!         → Quit without saving
+:e filename → Open file
+:w filename → Save as
+
+🖊️ INSERT MODE
+i           → Insert before cursor
+I           → Insert at beginning of line
+a           → Append after cursor
+A           → Append at end of line
+o           → Open new line below
+O           → Open new line above
+
+📦 NAVIGATION
+h / l       → Move left / right
+j / k       → Move down / up
+0 / ^       → Start of line
+$           → End of line
+w / b       → Next / previous word
+gg / G      → Start / end of file
+:n          → Go to line n
+
+✂️ EDITING
+x           → Delete character
+dd          → Delete line
+dw          → Delete word
+u           → Undo
+Ctrl + r    → Redo
+yy          → Yank (copy) line
+p / P       → Paste after / before
+r<char>     → Replace character
+
+🔍 SEARCH
+/pattern    → Search forward
+?pattern    → Search backward
+n / N       → Next / previous match
+
+🔄 REPLACE
+:%s/old/new/g   → Replace all in file
+:s/old/new/     → Replace in current line

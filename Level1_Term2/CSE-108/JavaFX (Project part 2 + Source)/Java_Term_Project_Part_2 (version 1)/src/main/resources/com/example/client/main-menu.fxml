@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="415.0" prefWidth="460.0" spacing="15.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.MainMenuController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+          <Label fx:id="welcomeText" prefHeight="18.0" prefWidth="158.0" />
+    <Button onAction="#onHelloButtonClick" text="Hello!" />
+   <Button mnemonicParsing="false" onAction="#searchMovieMenu" prefHeight="30.0" prefWidth="94.0" text="Search Movies" />
+   <Button mnemonicParsing="false" onAction="#searchPCmenu" text="Search Production Companies" />
+   <Button mnemonicParsing="false" text="Add Movie" />
+   <Button mnemonicParsing="false" text="Exit System" />
+</VBox>

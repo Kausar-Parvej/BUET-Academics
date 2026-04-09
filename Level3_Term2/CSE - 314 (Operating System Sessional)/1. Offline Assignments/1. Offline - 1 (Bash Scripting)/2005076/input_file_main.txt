@@ -1,0 +1,11 @@
+true
+zip tar rar
+c cpp py sh
+100
+5
+./test_case
+2005001 2005120
+./test_case/expected_output.txt
+10
+./test_case/plagiarism.txt
+100

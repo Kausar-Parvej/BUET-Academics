@@ -1,0 +1,88 @@
+Multiteller bank simulation — Process Interaction
+Separate queues with jockeying
+
+Teller range       : 4 to 7
+
+Mean interarrival  : 1.000 minutes
+
+Mean service time  : 9.000 minutes
+
+Bank open for      : 6.000 hours
+
+
+
+
+With  4 tellers:
+  Time-avg customers in queue :    101.398
+  Average delay in queue      :   245.7947 minutes
+  Maximum delay in queue      :   622.9239 minutes
+  Customers served            :        393
+
+Delay statistics (sampst):
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         245.795          393.000          622.924          0.00000 
+________________________________________________________________________
+
+
+
+
+With  5 tellers:
+  Time-avg customers in queue :     60.074
+  Average delay in queue      :   107.3948 minutes
+  Maximum delay in queue      :   274.1762 minutes
+  Customers served            :        336
+
+Delay statistics (sampst):
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         107.395          336.000          274.176          0.00000 
+________________________________________________________________________
+
+
+
+
+With  6 tellers:
+  Time-avg customers in queue :     52.928
+  Average delay in queue      :    82.3438 minutes
+  Maximum delay in queue      :   212.8185 minutes
+  Customers served            :        357
+
+Delay statistics (sampst):
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         82.3438          357.000          212.819          0.00000 
+________________________________________________________________________
+
+
+
+
+With  7 tellers:
+  Time-avg customers in queue :     37.723
+  Average delay in queue      :    49.6253 minutes
+  Maximum delay in queue      :   121.1720 minutes
+  Customers served            :        365
+
+Delay statistics (sampst):
+
+ sampst                         Number
+variable                          of
+ number       Average           values          Maximum          Minimum
+________________________________________________________________________
+
+    1         49.6253          365.000          121.172          0.00000 
+________________________________________________________________________
+
+

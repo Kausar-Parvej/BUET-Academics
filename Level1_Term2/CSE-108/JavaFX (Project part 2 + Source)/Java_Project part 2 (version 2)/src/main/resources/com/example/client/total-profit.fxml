@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="354.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.TotalProfitController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="354.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="783.0">
+            <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.21164143085479736" green="0.0560000017285347" blue="0.800000011920929" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.010752688172043034">
+                     <color>
+                        <Color red="0.8410006761550903" green="0.9052631855010986" blue="0.5196881294250488" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.3027590688881014">
+                     <color>
+                        <Color red="0.8500000238418579" green="0.06800000369548798" blue="0.06800000369548798" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.6791031549096066">
+                     <color>
+                        <Color red="0.28631579875946045" green="0.45810526609420776" blue="0.7157894968986511" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8181200519910203">
+                     <color>
+                        <Color red="0.6631578803062439" green="0.44947367906570435" blue="0.44947367906570435" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.8526315689086914" green="0.06315789371728897" blue="0.06315789371728897" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+            </fill>
+        </Rectangle>
+        <Label layoutX="28.0" layoutY="127.0" prefHeight="98.0" prefWidth="490.0" text="Total Profit of The Production Company :" textFill="#1f015c">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <Button layoutX="340.0" layoutY="272.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="32.0" prefWidth="83.0" text="Back" textFill="#230786">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <effect>
+                <Lighting diffuseConstant="1.73" specularConstant="0.02" specularExponent="22.2" surfaceScale="9.17">
+                    <bumpInput>
+                        <Shadow />
+                    </bumpInput>
+                    <light>
+                        <Light.Distant azimuth="200.23" elevation="150.69">
+                            <color>
+                                <Color red="0.046783626079559326" green="0.7894737124443054" blue="0.244834303855896" />
+                            </color>
+                        </Light.Distant>
+                    </light>
+                </Lighting>
+            </effect>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+      <Label fx:id="totalProfit" layoutX="503.0" layoutY="157.0" prefHeight="39.0" prefWidth="272.0" textFill="#eeff00">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="thisPC" layoutX="204.0" layoutY="14.0" prefHeight="61.0" prefWidth="374.0">
+         <font>
+            <Font name="Times New Roman Bold Italic" size="28.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

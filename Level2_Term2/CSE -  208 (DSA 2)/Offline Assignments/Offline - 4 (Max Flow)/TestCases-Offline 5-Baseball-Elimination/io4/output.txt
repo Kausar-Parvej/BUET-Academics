@@ -1,0 +1,42 @@
+L is eliminated.
+They can win at most 12 + 62 = 74 games.
+B has won a total of 88 games.
+They play each other 0 times.
+So on average, each of the teams in this group wins 88/1 = 88 games.
+
+N is eliminated.
+They can win at most 11 + 92 = 103 games.
+Q, Y, R, X, Z, S, T, V, W, B, G, C, M, A, I, F, D, H, E, J, K, O, L and U have won a total of 1137 games.
+They play each other 1400 times.
+So on average, each of the teams in this group wins 2537/24 = 105.708 games.
+
+P is eliminated.
+They can win at most 22 + 47 = 69 games.
+B has won a total of 88 games.
+They play each other 0 times.
+So on average, each of the teams in this group wins 88/1 = 88 games.
+
+U is eliminated.
+They can win at most 17 + 48 = 65 games.
+B has won a total of 88 games.
+They play each other 0 times.
+So on average, each of the teams in this group wins 88/1 = 88 games.
+
+V is eliminated.
+They can win at most 50 + 32 = 82 games.
+B has won a total of 88 games.
+They play each other 0 times.
+So on average, each of the teams in this group wins 88/1 = 88 games.
+
+W is eliminated.
+They can win at most 25 + 39 = 64 games.
+B has won a total of 88 games.
+They play each other 0 times.
+So on average, each of the teams in this group wins 88/1 = 88 games.
+
+Z is eliminated.
+They can win at most 52 + 23 = 75 games.
+B has won a total of 88 games.
+They play each other 0 times.
+So on average, each of the teams in this group wins 88/1 = 88 games.
+

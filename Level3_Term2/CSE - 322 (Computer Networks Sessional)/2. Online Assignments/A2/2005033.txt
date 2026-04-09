@@ -1,0 +1,121 @@
+hostname Sw-CSE
+
+banner motd #Authorized Access Only#
+
+vlan 10
+name CSE
+exit
+vlan 15
+name EEE
+exit
+vlan 20
+name BME
+exit
+
+vlan 101
+name Management
+exit 
+
+int fa0/5
+switchport mode access
+switchport access vlan 10
+exit
+
+int fa0/6
+switchport mode access
+switchport access vlan 15
+exit
+
+int fa0/7
+switchport mode access
+switchport access vlan 20
+exit
+
+int vlan 101
+ip address 192.168.101.2 255.255.255.0
+no shutdown
+exit
+
+do sh vlan br
+
+int fa0/1
+switchport mode trunk
+switchport trunk native vlan 101
+switchport trunk allowed vlan 10,15,20,101
+exit
+
+int g0/0.101
+encapsulation dot1q 101
+ip address 192.168.101.1 255.255.255.0
+int g0/0.10
+encapsulation dot1q 10
+ip address 192.168.10.1 255.255.255.0
+int g0/0.15
+encapsulation dot1q 15
+ip address 192.168.15.1 255.255.255.0
+int g0/0.20
+encapsulation dot1q 20
+ip address 192.168.20.1 255.255.255.0
+int g0/0
+no shutdown
+
+int s0/0/0
+clock rate 64000
+ip address 100.2.2.1 255.255.255.252
+no shutdown
+exit
+ip route 0.0.0.0 0.0.0.0 s0/0/0
+
+int s0/0/0
+clock rate 64000
+ip address 100.2.2.2 255.255.255.252
+no shutdown
+exit
+int g0/0
+ip address 100.5.5.1 255.255.255.0
+no shutdown
+exit
+ip route 0.0.0.0 0.0.0.0 s0/0/0
+
+ip access-list extended FILTER
+deny tcp 192.168.10.0 0.0.0.255 host 100.5.5.20 eq ftp
+permit tcp 192.168.10.0 0.0.0.255 host 100.5.5.10 eq www
+permit tcp 192.168.15.0 0.0.0.255 host 100.5.5.20 eq ftp
+deny tcp 192.168.15.0 0.0.0.255 host 100.5.5.10 eq www
+deny tcp 192.168.20.0 0.0.0.255 host 100.5.5.20 eq ftp
+deny tcp 192.168.20.0 0.0.0.255 host 100.5.5.10 eq www
+permit ip any any
+exit
+
+int s0/0/0
+ip access-group FILTER out
+exit
+
+enable secret CSEA2
+line console 0
+password WNL
+login
+line vty 0 15
+password TelnetA2
+login 
+transport input telnet
+exit
+service password-encryption
+
+
+ip nat pool A2pool 209.155.30.10 209.155.30.14 netmask 255.255.255.248
+access-list 1 permit 192.168.70.0 0.0.0.255
+access-list 1 deny host 192.168.80.11
+access-list 1 permit 192.168.80.0 0.0.0.255
+ip nat inside source list 1 pool A2pool
+
+int g0/0
+ip nat inside
+exit
+int g0/1
+ip nat inside
+exit
+int s0/3/0
+ip nat outside
+exit
+exit

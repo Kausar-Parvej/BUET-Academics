@@ -1,0 +1,21 @@
+task 1:
+
+192.168.3.191 
+10.243.21.22 and 10.243.24.22 
+202.56.7.10 
+103.15.245.13.summitiig.net
+103.199.87.188.summitiig.net and 157.119.185.149.summitiig.net
+
+
+task 2:
+sysctl net.ipv4.tcp_available_congestion_control
+sudo modprobe tcp_vegas
+sudo sysctl -w net.ipv4.tcp_congestion_control=vegas
+
+
+task 3:
+Non-DNS not port 53
+
+
+task4:
+udp&&tcp.port==443

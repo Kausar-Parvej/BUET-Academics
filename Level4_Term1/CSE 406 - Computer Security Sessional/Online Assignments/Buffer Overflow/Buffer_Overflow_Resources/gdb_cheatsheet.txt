@@ -1,0 +1,82 @@
+//------use sudo if no permission--------------//
+
+disas <function_name> 
+#prints the assembly dump along with address
+
+b <function_name>
+#set the breakpoint at the first instruction of the specified function
+
+b *0x<address>
+#set the breakpoint at the specified address
+
+run
+#program will pause execution at the breakpoint
+
+next
+#execute next C instruction and pause
+
+stepi
+#execute next assembly instruction and pause
+
+continue
+#pause at next breakpoint
+
+p $RegisterName
+p &Variable
+#prints the address of the register/variable
+
+p (*(unsigned *)$RegisterName)
+p (*(unsigned *)&Variable)
+#prints the content of the register/variable
+
+q
+#quit from gdb
+
+
+
+
+//------------------//
+gcc -m32 -o stack_dbg -g -z execstack -fno-stack-protector stack.c
+
+
+without gdb:
+------------
+cd .
+`pwd`/stack  (run with full path)
+
+with gdb:
+----------
+cd .
+gdb stack_dbg
+(break ba run er age)
+unset environment LINES
+unset environment Columns
+
+exact address-> (($ebp+4) - &buffer) porjonto anything ('A')
+		($ebp+8) is the return address
+		then shellcode
+			
+
+gdb stack_dbg
+b foo
+run
+next
+p $ebp     //$ebp => address of the lowest byte of ebp, if $ebp=108 (111,110,109,108
+ 		combines ebp)
+
+p &canary
+p &buffer
+p/d 0xd0ac-0xcecc 
+
+or, p/d (void *)$ebp + 4 - (void *)&buffer
+496
+p $ebp+8
+0xffffd0c0
+
+for 64bit:
+p/d (void *)$rbp + 8 - (void *)&buffer
+
+
+for heap:
+p/d password-username
+

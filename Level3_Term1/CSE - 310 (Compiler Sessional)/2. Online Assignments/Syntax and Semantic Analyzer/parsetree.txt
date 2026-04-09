@@ -1,0 +1,66 @@
+start : program 	<Line: 1-10>
+ program : unit 	<Line: 1-10>
+  unit : func_definition 	<Line: 1-10>
+   func_definition : type_specifier ID LPAREN RPAREN compound_statement 	<Line: 1-10>
+    type_specifier : INT 	<Line: 1-1>
+     INT : int	<Line: 1>
+    ID : main	<Line: 1>
+    LPAREN : (	<Line: 1>
+    RPAREN : )	<Line: 1>
+    compound_statement : LCURL statements RCURL 	<Line: 1-10>
+     LCURL : {	<Line: 1>
+     statements : statements statement 	<Line: 2-9>
+      statements : statements statement 	<Line: 2-3>
+       statements : statement 	<Line: 2-2>
+        statement : var_declaration 	<Line: 2-2>
+         var_declaration : type_specifier declaration_list SEMICOLON 	<Line: 2-2>
+          type_specifier : INT 	<Line: 2-2>
+           INT : int	<Line: 2>
+          declaration_list : declaration_list COMMA ID 	<Line: 2-2>
+           declaration_list : ID 	<Line: 2-2>
+            ID : i	<Line: 2>
+           COMMA : ,	<Line: 2>
+           ID : j	<Line: 2>
+          SEMICOLON : ;	<Line: 2>
+       statement : expression_statement 	<Line: 3-3>
+        expression_statement : expression SEMICOLON 	<Line: 3-3>
+         expression : variable ASSIGNOP logic_expression 	<Line: 3-3>
+          variable : ID 	<Line: 3-3>
+           ID : i	<Line: 3>
+          ASSIGNOP : =	<Line: 3>
+          logic_expression : rel_expression 	<Line: 3-3>
+           rel_expression : simple_expression 	<Line: 3-3>
+            simple_expression : term 	<Line: 3-3>
+             term : unary_expression 	<Line: 3-3>
+              unary_expression : factor 	<Line: 3-3>
+               factor : CONST_INT 	<Line: 3-3>
+                CONST_INT : 0	<Line: 3>
+         SEMICOLON : ;	<Line: 3>
+      statement : LOOP LCURL statement RCURL WHILE LPAREN expression RPAREN SEMICOLON 	<Line: 4-9>
+       LOOP : loop	<Line: 4>
+       LCURL : {	<Line: 4>
+       statement : expression_statement 	<Line: 6-8>
+        expression_statement : expression SEMICOLON 	<Line: 6-8>
+         expression : error	<Line: 6>
+         SEMICOLON : ;	<Line: 8>
+       RCURL : }	<Line: 9>
+       WHILE : while	<Line: 9>
+       LPAREN : (	<Line: 9>
+       expression : logic_expression 	<Line: 9-9>
+        logic_expression : rel_expression 	<Line: 9-9>
+         rel_expression : simple_expression RELOP simple_expression 	<Line: 9-9>
+          simple_expression : term 	<Line: 9-9>
+           term : unary_expression 	<Line: 9-9>
+            unary_expression : factor 	<Line: 9-9>
+             factor : variable 	<Line: 9-9>
+              variable : ID 	<Line: 9-9>
+               ID : i	<Line: 9>
+          RELOP : <	<Line: 9>
+          simple_expression : term 	<Line: 9-9>
+           term : unary_expression 	<Line: 9-9>
+            unary_expression : factor 	<Line: 9-9>
+             factor : CONST_INT 	<Line: 9-9>
+              CONST_INT : 10	<Line: 9>
+       RPAREN : )	<Line: 9>
+       SEMICOLON : ;	<Line: 9>
+     RCURL : }	<Line: 10>

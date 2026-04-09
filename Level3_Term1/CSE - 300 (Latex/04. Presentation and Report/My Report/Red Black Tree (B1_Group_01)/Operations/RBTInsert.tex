@@ -1,0 +1,29 @@
+\begin{algorithm}[H]
+\SetAlgoLined
+\LinesNumbered
+
+            RB Insert(T,z)\\
+            $y\gets T.nil$
+            \\
+            $x\gets T.root$\\
+             \While{$x \neq T.nil$}{
+              $y\gets x$;\\
+              \eIf{$z.key < x.key$}{
+               $x \gets x.left$\
+               }{
+               $x \gets x.right$\
+              }
+             }
+             $z.p \gets y$\\
+             
+              \uIf{$y = T.nil$}{
+             $T.root \gets z$}\
+             \uElseIf{$z.key < y.key$}{$y.left \gets z$}\
+             \uElse{$y.right \gets z$}\
+             {$z.left \gets T.nil$}\\
+             {$z.right \gets T.nil$}\\
+             {$y.color \gets red$}\\
+             RB-Insert-Fixup(T, z)
+
+ 
+\end{algorithm}

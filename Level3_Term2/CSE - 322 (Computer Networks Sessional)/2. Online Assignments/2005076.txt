@@ -1,0 +1,193 @@
+Switch(S2):
+=======
+(config)
+hostname S2
+
+VLAN
+====
+(config)
+vlan 11
+name ME
+exit
+vlan 22
+name NAME
+exit
+vlan 33
+name URP
+exit
+
+vlan 44
+name Management
+exit
+
+
+sh vlan br
+
+Switch:
+=======
+(config#)
+int fa0/5
+switchport mode access
+switchport access vlan 11
+exit
+
+int fa0/6
+switchport mode access
+switchport access vlan 22
+exit
+
+int fa0/7
+switchport mode access
+switchport access vlan 33
+exit
+
+int vlan 44
+ip address 192.168.44.2 255.255.255.0
+exit
+
+(#)
+sh vlan br
+
+Trunk 
+(config)
+int fa0/1
+switchport mode trunk
+switchport trunk native vlan 44
+switchport trunk allowed vlan 11,22,33,44
+exit
+
+sh int fa0/1 switchport
+
+
+Router 1:
+=========
+(config)
+int g0/0.44
+encapsulation dot1q 44
+ip address 192.168.44.1 255.255.255.0
+
+int g0/0.11
+encapsulation dot1q 11
+ip address 192.168.11.1 255.255.255.0
+
+int g0/0.22
+encapsulation dot1q 22
+ip address 192.168.22.1 255.255.255.0
+
+int g0/0.33
+encapsulation dot1q 33
+ip address 192.168.33.1 255.255.255.0
+
+int g0/0
+no shutdown
+
+
+Router 1:
+---------
+
+(config)
+int s0/0/0
+clock rate 64000
+ip address 25.0.0.1 255.255.255.252
+no shutdown
+exit
+
+ip route 0.0.0.0 0.0.0.0 s0/0/0
+
+Router 2:
+=========
+For lft side:
+=============
+int s0/0/0
+clock rate 64000
+ip address 25.0.0.2 255.255.255.252
+no shutdown
+exit
+
+ip route 0.0.0.0 0.0.0.0 s0/0/0
+
+For right side:
+===============
+int g0/0
+ip address 192.168.60.1 255.255.255.0
+no shutdown
+exit
+
+ACL 
+
+Router 1:
+----------
+(config#)
+ip access-list extended FILTER
+permit tcp 192.168.11.0 0.0.0.255 host 192.168.60.7 eq ftp
+permit tcp 192.168.11.0 0.0.0.255 host 192.168.60.6 eq www
+
+deny tcp 192.168.22.0 0.0.0.255 host 192.168.60.7 eq ftp
+permit tcp 192.168.22.0 0.0.0.255 host 192.168.60.6 eq www
+
+permit tcp 192.168.33.0 0.0.0.255 host 192.168.60.7 eq ftp
+deny tcp 192.168.33.0 0.0.0.255 host 192.168.60.6 eq www
+
+permit ip any any
+exit
+
+int s0/0/0
+ip access-group FILTER out
+exit
+
+do show access-list
+
+
+
+
+Password:
+=========
+
+enable secret CSEB1
+
+line console 0
+password CISCO
+login
+
+line vty 0 15
+password CSE20
+login 
+
+transport input telnet
+exit
+
+service password-encryption
+
+config mood:
+============
+do sh run
+
+################################################################
+################################################################
+
+NAT configuration:
+==================
+
+Router:(R3)
+-----------
+(config#)
+ip nat pool B1pool 223.50.12.16 223.50.12.17 netmask 255.255.255.240
+access-list 1 permit 192.168.70.0 0.0.0.255
+access-list 1 deny 192.168.80.0 0.0.0.255
+ip nat inside source list 1 pool B1pool overload
+
+int g0/0
+ip nat inside
+exit
+
+int g0/1
+ip nat inside
+exit
+
+int s0/3/0
+ip nat outside
+exit
+
+exit
+
+sh ip nat trans

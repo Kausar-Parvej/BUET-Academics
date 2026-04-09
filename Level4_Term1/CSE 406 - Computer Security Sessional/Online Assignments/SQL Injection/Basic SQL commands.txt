@@ -1,0 +1,54 @@
+-- MySQL Basic SQL Commands
+
+-- SELECT
+SELECT * FROM employees;
+SELECT name, age FROM employees WHERE age > 30 ORDER BY age DESC;
+
+-- INSERT
+INSERT INTO employees (name, age, department) VALUES ('Alice', 28, 'HR');
+
+-- UPDATE
+UPDATE employees SET age = 29 WHERE name = 'Alice';
+
+-- DELETE
+DELETE FROM employees WHERE name = 'Alice';
+
+-- ALTER TABLE
+ALTER TABLE employees ADD COLUMN salary DECIMAL(10,2);
+ALTER TABLE employees DROP COLUMN salary;
+ALTER TABLE employees MODIFY COLUMN age INT NOT NULL;
+
+-- DROP TABLE
+DROP TABLE employees;
+
+-- INNER JOIN
+SELECT e.name, d.name 
+FROM employees e 
+INNER JOIN departments d ON e.department_id = d.id;
+
+-- LEFT JOIN
+SELECT e.name, d.name 
+FROM employees e 
+LEFT JOIN departments d ON e.department_id = d.id;
+
+-- RIGHT JOIN
+SELECT e.name, d.name 
+FROM employees e 
+RIGHT JOIN departments d ON e.department_id = d.id;
+
+-- FULL OUTER JOIN (via UNION workaround in MySQL)
+SELECT e.name, d.name 
+FROM employees e 
+LEFT JOIN departments d ON e.department_id = d.id
+UNION
+SELECT e.name, d.name 
+FROM employees e 
+RIGHT JOIN departments d ON e.department_id = d.id;
+
+-- CREATE TABLE (optional for testing)
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    department_id INT
+);

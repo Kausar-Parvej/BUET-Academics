@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" styleClass="window" stylesheets="@ProductionHomeWindow.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.PChomeWindowController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox fx:id="leftVBox" prefHeight="600.0" prefWidth="313.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="255.0" prefWidth="314.0">
+                     <children>
+                        <ImageView fx:id="pcImage" fitHeight="248.0" fitWidth="304.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@image_4.jpg" />
+                           </image></ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="79.0" prefWidth="334.0" translateY="45.0">
+                     <children>
+                        <Label fx:id="productionNameFirstLine" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="292.0" styleClass="clubName" stylesheets="@ProductionHomeWindow.css" text="PRODUCTION" textAlignment="CENTER" translateY="40.0">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Arial" size="30.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="235.0" prefHeight="102.0" prefWidth="314.0" translateY="40.0">
+                     <children>
+                        <Label fx:id="productionNameSecondLine" alignment="CENTER" contentDisplay="CENTER" styleClass="clubName" stylesheets="@ProductionHomeWindow.css" text="COMPANY" textAlignment="CENTER" translateY="40.0">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Arial" size="30.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="334.0" visible="false">
+                     <children>
+                        <Label text="Remaining Budget:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="200.0" prefWidth="20.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                     <padding>
+                        <Insets left="30.0" right="30.0" />
+                     </padding></HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="245.0" prefHeight="135.0" prefWidth="334.0">
+                     <children>
+                        <Button fx:id="buyPlayerButton" mnemonicParsing="false" onAction="#onBackClick" text="Back">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children></HBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox fx:id="bodyVBox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox fx:id="topBarHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="466.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <TextField fx:id="searchMovieNameTextField" prefWidth="200.0" promptText="Type Movie Name...">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="searchMovieButton" mnemonicParsing="false" onAction="#onSearchClickByName" text="Search">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                              <Button fx:id="resetMovieSearchButton" mnemonicParsing="false" onAction="#onSearchClearClick" text="Reset">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding></HBox>
+                        <Pane prefHeight="100.0" prefWidth="64.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label layoutX="-25.0" layoutY="21.0" prefHeight="65.0" prefWidth="173.0" text="Total Profit : " textFill="#00c3ff">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="totalProfit" layoutX="125.0" layoutY="21.0" prefHeight="65.0" prefWidth="173.0" text="945M $" textFill="#030d10">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children></Pane>
+                        <HBox fx:id="refreshRateHBox" alignment="CENTER" prefHeight="100.0" prefWidth="211.0" visible="false">
+                           <children>
+                              <Label text="Refresh Every:" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="refreshRateChoiceBox" prefHeight="25.0" prefWidth="87.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="listPlayerHBox" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #001a33;" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox fx:id="playerListVBox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="550.0" HBox.hgrow="ALWAYS">
+<!--                           <children>-->
+<!--                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="459.0" VBox.vgrow="ALWAYS">-->
+<!--                                 <children>-->
+<!--                                    <ScrollPane fx:id="scrollPane" prefHeight="445.0" prefWidth="419.0" styleClass="transparent" stylesheets="@clubHomeWindow.css">-->
+<!--                                      <content>-->
+<!--                                          <GridPane fx:id="gridPane" prefHeight="6.0" prefWidth="0.0">-->
+<!--                                            <columnConstraints>-->
+<!--                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                            </columnConstraints>-->
+<!--                                          </GridPane>-->
+<!--                                      </content>-->
+<!--                                       <HBox.margin>-->
+<!--                                          <Insets top="10.0" />-->
+<!--                                       </HBox.margin>-->
+<!--                                    </ScrollPane>-->
+<!--                                 </children>-->
+<!--                              </HBox>-->
+<!--                           </children>-->
+                        </VBox>
+                        <VBox fx:id="rightVBox" alignment="TOP_CENTER" prefHeight="445.0" prefWidth="232.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <AnchorPane prefHeight="240.0" prefWidth="234.0" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9aa5ae" height="107.0" layoutX="-1.0" layoutY="56.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="239.0" />
+                                    <Button layoutX="5.0" layoutY="75.0" mnemonicParsing="false" onAction="#onMostRecentMovieClick" prefHeight="27.0" prefWidth="148.0" style="-fx-background-color: #FFFF00;" text="Most Recent Movie">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <font>
+                                          <Font name="Arial Rounded MT Bold" size="14.0" />
+                                       </font></Button>
+                                    <Button layoutX="5.0" layoutY="120.0" mnemonicParsing="false" onAction="#onHighestGrossingMovieClick" prefHeight="27.0" prefWidth="196.0" style="-fx-background-color: #FFFF00;" text="Highest Grossing Movie">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <font>
+                                          <Font name="Arial Rounded MT Bold" size="14.0" />
+                                       </font></Button>
+                                    <Button fx:id="resetFiltersButton1" contentDisplay="CENTER" layoutX="71.0" layoutY="183.0" mnemonicParsing="false" onAction="#onAddMovieClick" text="ADD MOVIE" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="152.0" prefWidth="234.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Label fx:id="ageLabel" layoutX="15.0" layoutY="14.0" prefHeight="18.0" prefWidth="52.0" text="Genre" />
+                                    <Label fx:id="heightLabel" layoutX="15.0" layoutY="62.0" prefHeight="18.0" prefWidth="72.0" text="Release Year" />
+                                    <Label fx:id="salaryLabel" layoutX="15.0" layoutY="108.0" prefHeight="18.0" prefWidth="68.0" text="Run Time" />
+                                    <TextField fx:id="enterGenre" layoutX="93.0" layoutY="11.0" prefHeight="26.0" prefWidth="108.0" promptText="Enter any genre" />
+                                    <TextField fx:id="enterYear" layoutX="93.0" layoutY="58.0" prefHeight="26.0" prefWidth="92.0" promptText="Enter a Year" />
+                                    <TextField fx:id="runTimeFromTextField" layoutX="93.0" layoutY="105.0" prefHeight="26.0" prefWidth="72.0" promptText="From (min)" />
+                                    <TextField fx:id="runTimeToTextField" layoutX="167.0" layoutY="105.0" prefHeight="26.0" prefWidth="69.0" promptText="To (min)" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="37.0" prefWidth="234.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER" layoutX="-1.0" layoutY="23.0" prefHeight="51.0" prefWidth="205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <children>
+                                          <Button fx:id="applyFiltersButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#applyFiltersClick" text="Apply Filters" textAlignment="CENTER">
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                          <Button fx:id="resetFiltersButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#resetFiltersClick" text="Reset Filters" textAlignment="CENTER">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                           </children></VBox>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="bottomBarHBox" prefHeight="55.0" prefWidth="666.0" />
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

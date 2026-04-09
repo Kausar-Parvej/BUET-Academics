@@ -1,0 +1,17 @@
+i have an assignment on Monte Carlo simulation in my simulation lab.
+
+i want you to do it for me, step by step and properly and accurately.
+
+here is the assignment specification:
+
+Assignment 4 (part 01) 
+Perform a Monte Carlo simulation to estimate the value of the constant pi. 
+It can be done by considering method (a) in two dimensions, inscribe a circle inside of the square or 
+method (b) in three dimensions, inscribe a sphere inside of the cube. 
+Find out whether method (a) is better than method (b) by considering which one needs more number 
+of runs or replications to achieve a 95% confidence interval with a specified precision w = 0.01.
+
+check out the image for better clearification.
+
+now i have submit a xl file that does this simulation properly.
+carefully understand everything and analyze them and then accurately and completely do this assignment for me step by step.

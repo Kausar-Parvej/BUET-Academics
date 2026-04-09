@@ -1,0 +1,41 @@
+size: 5000 -> method: Separate chaining -> Hash1 collision count: 2386
+size: 5000 -> method: Separate chaining -> Hash1 average probes: 1.448
+size: 5000 -> method: Separate chaining -> Hash2 collision count: 2491
+size: 5000 -> method: Separate chaining -> Hash2 average probes: 1.534
+size: 5000 -> method: Double hashing Hash1 -> collision count: 33046
+size: 5000 -> method: Double hashing Hash1 -> average probes: 4.936
+size: 5000 -> method: Double hashing Hash2 -> collision count: 26595
+size: 5000 -> method: Double hashing Hash2 -> average probes: 4.144
+size: 5000 -> method: Custom probing Hash1 -> collision count: 31773
+size: 5000 -> method: Custom probing Hash1 -> average probes: 2.612
+size: 5000 -> method: Custom probing Hash2 -> collision count: 32751
+size: 5000 -> method: Custom probing Hash2 -> average probes: 4.636
+
+
+
+size: 10000 -> method: Separate chaining -> Hash1 collision count: 4958
+size: 10000 -> method: Separate chaining -> Hash1 average probes: 1.493
+size: 10000 -> method: Separate chaining -> Hash2 collision count: 5107
+size: 10000 -> method: Separate chaining -> Hash2 average probes: 1.515
+size: 10000 -> method: Double hashing -> Hash1 collision count: 60327
+size: 10000 -> method: Double hashing -> Hash1 average probes: 5.656
+size: 10000 -> method: Double hashing -> Hash2 collision count: 64209
+size: 10000 -> method: Double hashing -> Hash2 average probes: 4.348
+size: 10000 -> method: Custom probing -> Hash1 collision count: 64994
+size: 10000 -> method: Custom probing -> Hash1 average probes: 4.263
+size: 10000 -> method: Custom probing -> Hash2 collision count: 60919
+size: 10000 -> method: Custom probing -> Hash2 average probes: 5.386
+
+
+size: 20000 -> method: Separate chaining -> Hash1 collision count: 9982
+size: 20000 -> method: Separate chaining -> Hash1 average probes: 1.54
+size: 20000 -> method: Separate chaining -> Hash2 collision count: 10081
+size: 20000 -> method: Separate chaining -> Hash2 average probes: 1.5675
+size: 20000 -> method: Double hashing -> Hash1 collision count: 120386
+size: 20000 -> method: Double hashing -> Hash1 average probes: 4.1265
+size: 20000 -> method: Double hashing -> Hash2 collision count: 136086
+size: 20000 -> method: Double hashing -> Hash2 average probes: 5.641
+size: 20000 -> method: Custom probing -> Hash1 collision count: 133836
+size: 20000 -> method: Custom probing -> Hash1 average probes: 4.2295
+size: 20000 -> method: Custom probing -> Hash2 collision count: 133254
+size: 20000 -> method: Custom probing -> Hash2 average probes: 5.0045

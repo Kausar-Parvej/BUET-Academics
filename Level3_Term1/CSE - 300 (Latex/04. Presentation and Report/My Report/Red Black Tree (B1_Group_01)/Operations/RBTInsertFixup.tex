@@ -1,0 +1,50 @@
+\begin{algorithm}[H]
+\SetAlgoLined
+\LinesNumbered
+
+            RB\_Insert\_Fixup(T,z)\\
+            
+             \While{(z.parent $\neq$ nil) and (z.parent.color $=$ red)}{
+              
+              \eIf{$z.parent = z.parent.parent.left$}{
+               $y \gets  z.parent.parent.right$\
+                \uIf{y.color = red}{
+                    $z.parent.color \gets black$ // CASE 1\\
+                    $y.color \gets black$\\
+                    $z.parent.parent.color \gets red$\\
+                    $z \gets z.parent.parent$\\
+                }
+                \uElse{
+                    \uIf {z = z.parent.right}{
+                    $z \gets z.parent$ // CASE 2\\
+                    Left\_Rotate(T, z)
+                    }
+                    $z.parent.color \gets black$ // CASE 3\\
+                    $z.parent.parent.color \gets red$\\
+                    Right\_Rotate(T, z.parent.parent)
+                }\
+               }{
+                $y \gets z.parent.parent.left$\
+                \uIf {y.color = red} 
+                {
+                $z.parent.color \gets black$ // CASE 4\\
+                $y.color \gets black$\\
+                $z.parent.parent.color \gets red$\\
+                $z  z.parent.parent$\
+                }
+                \uElse{
+                    \uIf{z = z.parent.left}
+                    {
+                    $z \gets z.parent$ // CASE 5\\
+                    Right\_Rotate(T, z)
+                    }
+                    $z.parent.color \gets black$ // CASE 6\\
+                    $z.parent.parent.color \gets red$\\
+                    Left\_Rotate(T, z.parent.parent)
+                }
+              }
+             }
+             $root.color \gets black$
+
+ 
+\end{algorithm}

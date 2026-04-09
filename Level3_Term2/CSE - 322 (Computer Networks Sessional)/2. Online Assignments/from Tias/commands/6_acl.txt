@@ -1,0 +1,130 @@
+Standard ACL: (1-99) or (1300-1999) => source address
+place the ACL as close to the destination as possible
+Extended ACL: (100-199) or (2000-2699) => source and destination address
+place the ACL as close to the source as possible
+
+#(conf) Get this renge from
+access-list ?
+
+#(conf) Creating named ACLS ***************************************
+ip access-list standard NAME
+ip access-list extended NAME
+
+# show access-lists in privileged exec mode ****************************
+show access-lists
+#(conf) show access-lists in global configuration mode ****************************
+do show access-lists
+
+# displays the running configuration but filters the output to only show the section related to access lists.
+show run | section access-list
+
+#  checks the IP configuration for the specified interface and filters the output to only show lines that contain "access-list.
+show ip int serial 0/0/0 | include access-list
+
+# Delete ACL list 10 ***************************************
+no access-list 10
+# Delete ACL list NAME ***************************************
+no ip access-list extended NAME
+
+# Apply ACL to interface ***************************************
+out -> outboud traffic
+in -> inbound traffic
+
+int s0/0/0
+ip access-group 10 out
+
+int g0/0
+ip access-group NAME in
+
+#------------------------------- Standard ACL--------------------------------
+
+# Numbered ACL
+access-list 10 remark Allowing only 10.64-79
+access-list 10 permit 192.168.10.64 0.0.0.15  (10.64-79)
+access-list 10 deny any (default deny)
+
+access-list 10 permit host 192.168.10.64 (only 10.64)
+or
+access-list 10 permit 192.168.10.64 0.0.0.0 (only 10.64)
+
+access-list 10 permit host 192.168.10.10
+access-list 10 deny 192.168.10.0 0.0.0.255 (only 10.10 is allowed)
+
+access-list 10 permit 192.168.20.0 0.0.0.255 (20.0-255)
+
+# Named ACL
+ip access-list standard NAME 
+permit host 192.168.10.10
+
+#-------------------------------------------------------------------------------
+
+#------------------------------- Extended ACL--------------------------------
+ip access-list extended NAME
+permit tcp 192.168.10.0 0.0.0.255 host 100.100.100.3 eq ftp
+permit tcp 192.168.10.0 0.0.0.255 host 100.100.100.3 eq ftp-data
+deny ip any any (default deny)
+
+permit tcp 192.168.10.0 0.0.0.255 host 100.100.100.3 eq www
+deny tcp 192.168.20.0 0.0.0.255 host 100.100.100.3 eq www
+
+#------------------------------------------------------------------------------
+
+#(config) How to configure an ACL to filter vty traffic. First, a local database entry for a user ADMIN and password class is configured. The vty lines on R1 are configured to use the local database for authentication, permit SSH traffic, and use the ADMIN-HOST ACL to restrict traffic.
+
+username ADMIN secret class
+ip access-list standard ADMIN-HOST
+remark This ACL secures incoming vty lines
+permit 192.168.10.10
+deny any
+exit
+line vty 0 4
+login local
+transport input telnet
+access-class ADMIN-HOST in
+end
+
+#(config) The SURFING ACL permits HTTP and HTTPS traffic from inside users to exit the G0/0/1 interface connected to the internet. Web traffic returning from the internet is permitted back into the inside private network by the BROWSING ACL. The SURFING ACL is applied inbound and the BROWSING ACL is applied outbound on the R1 G0/0/0 interface.
+
+ip access-list extended SURFING
+Remark Permits inside HTTP and HTTPS traffic
+permit tcp 192.168.10.0 0.0.0.255 any eq 80
+permit tcp 192.168.10.0 0.0.0.255 any eq 443
+exit
+
+ip access-list extended BROWSING
+Remark Only permit returning HTTP and HTTPS traffic
+permit tcp any 192.168.10.0 0.0.0.255 established
+exit
+interface g0/0/0
+ip access-group SURFING in
+ip access-group BROWSING out
+end
+
+show access-lists
+
+
+#(config) The PERMIT-PC1 ACL permits PC1 (192.168.10.10) TCP access to the FTP, SSH, Telnet, DNS , HTTP, and HTTPS traffic. The REPLY-PC1 ACL will permit return traffic to PC1. • The PERMIT-PC1 ACL is applied inbound and the REPLY-PC1 ACL applied outbound on the R1 G0/0/0 interface.
+
+ip access-list extended PERMIT-PC1
+Remark Permit PC1 TCP access to internet
+permit tcp host 192.168.10.10 any eq 20
+permit tcp host 192.168.10.10 any eq 21
+permit tcp host 192.168.10.10 any eq 22
+permit tcp host 192.168.10.10 any eq 23
+permit tcp host 192.168.10.10 any eq 53
+permit tcp host 192.168.10.10 any eq 80
+permit tcp host 192.168.10.10 any eq 443
+deny ip 192.168.10.0 0.0.0.255 any
+exit
+ip access-list extended REPLY-PC1
+Remark Only permit returning traffic to PC1
+permit tcp any host 192.168.10.10 established
+exit
+interface g0/0/0
+ip access-group PERMIT-PC1 in
+ip access-group REPLY-PC1 out
+end
+
+
+
+

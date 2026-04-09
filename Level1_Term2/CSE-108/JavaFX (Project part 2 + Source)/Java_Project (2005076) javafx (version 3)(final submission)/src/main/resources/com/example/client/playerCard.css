@@ -1,0 +1,59 @@
+.root {
+    -fx-background-color: #008080;
+}
+
+#playerNameLabel {
+    -fx-font-family: Impact;
+    -fx-font-size: 15pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #dddddd;
+}
+
+#playerPositionLabel {
+    -fx-font-family: "Stencil Std";
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #bfbfbf;
+}
+
+.separator *.line {
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: white;
+}
+
+#playerDetailsButton {
+    -fx-background-radius: 30;
+    -fx-background-color: #248f24;
+    -fx-text-fill: white;
+}
+
+#playerSellButton {
+    -fx-background-radius: 30;
+    -fx-background-color: #990000;
+    -fx-text-fill: white;
+}
+
+#playerPriceLabel {
+    -fx-text-fill: white;
+}
+
+.Paramount_Pictures {
+    -fx-background-color: #C8102E;
+}
+
+.Universal_Pictures {
+    -fx-background-color: #034694;
+}
+
+.New_Line_Cinema {
+    -fx-background-color: #EF0107;
+}
+
+.Manchester_United {
+    -fx-background-color: #DA291C;
+}
+
+.Manchester_City {
+    -fx-background-color: #5a9fd8;
+}

@@ -1,0 +1,30 @@
+# TCP Reset Attack Tool Requirements
+# BUET CSE406 Computer Security Sessional
+
+# Core networking and packet manipulation
+scapy>=2.4.5,<3.0.0
+
+# Network interface information
+netifaces>=0.11.0,<1.0.0
+
+# Terminal colors and formatting
+colorama>=0.4.4,<1.0.0
+
+# System and process information
+psutil>=5.8.0,<6.0.0
+
+# Built-in modules (no installation needed)
+# argparse - Command line argument parsing
+# configparser - Configuration file handling
+# threading - Multi-threading support
+# signal - Signal handling
+# socket - Network socket operations
+# subprocess - Process execution
+# platform - Platform identification
+# pathlib - Path operations
+# datetime - Date and time handling
+# collections - Specialized container datatypes
+# hashlib - Secure hash algorithms
+# time - Time-related functions
+# sys - System-specific parameters
+# os - Operating system interface

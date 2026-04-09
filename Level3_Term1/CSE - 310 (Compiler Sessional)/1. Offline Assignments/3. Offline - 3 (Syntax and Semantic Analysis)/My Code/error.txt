@@ -1,0 +1,29 @@
+Line# 20: Redefinition of parameter 'a'
+Line# 24: Conflicting types for 'foo3'
+Line# 28: Conflicting types for 'z'
+Line# 32: Conflicting types for 'var'
+Line# 37: Variable or field declared void 
+Line# 42: Variable or field 'e' declared void 
+Line# 43: Conflicting types for 'a'
+Line# 43: Conflicting types for 'c'
+Line# 45: Too many arguments to function 'func'
+Line# 48: Too many arguments to function 'correct_foo'
+Line# 49: Too many arguments to function 'correct_foo'
+Line# 50: Too many arguments to function 'correct_foo'
+Line# 52: Undeclared variable 'k'
+Line# 53: 'b' is not an array 
+Line# 54: 'c' is not an array 
+Line# 55: 'c' is not an array 
+Line# 55: Too many arguments to function 'foo4'
+Line# 56: 'c' is not an array 
+Line# 57: 'c' is not an array 
+Line# 57: Too many arguments to function 'foo4'
+Line# 58: 'c' is not an array 
+Line# 58: 'c' is not an array 
+Line# 58: Too many arguments to function 'foo4'
+Line# 59: 'c' is not an array 
+Line# 60: Warning: division by zero 
+Line# 61: Operands of modulus must be integers 
+Line# 63: Undeclared function 'foo5'
+Line# 68: Undeclared variable 'h'
+Line# 68: Undeclared function 'printf'

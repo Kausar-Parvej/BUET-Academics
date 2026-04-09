@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="371.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.LoginController">
+   <children>
+      <ImageView fitHeight="371.0" fitWidth="603.0" pickOnBounds="true">
+         <image>
+            <Image url="@image_11.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="309.0" layoutY="85.0" text="Username">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="311.0" layoutY="159.0" text="Password">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <TextField fx:id="userText" layoutX="381.0" layoutY="81.0" prefHeight="26.0" prefWidth="158.0" promptText="Enter Production Company" />
+      <PasswordField fx:id="passwordText" layoutX="381.0" layoutY="155.0" promptText="Password is &quot;abc&quot;" />
+      <ButtonBar layoutX="137.0" layoutY="193.0" prefHeight="40.0" prefWidth="200.0" />
+      <Button fx:id="loginButton" layoutX="456.0" layoutY="255.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="26.0" prefWidth="57.0" style="-fx-background-color: #90EE90;" text="Login">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </Button>
+    <Button fx:id="resetButton" layoutX="381.0" layoutY="255.0" mnemonicParsing="false" onAction="#resetAction" prefHeight="26.0" prefWidth="58.0" style="-fx-background-color: #FFCCCB;" text="Reset">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

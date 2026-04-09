@@ -1,0 +1,9 @@
+Kruskal's Algorithm:
+
+Total weight = 34
+0 4
+1 4
+2 5
+0 6
+3 6
+1 2

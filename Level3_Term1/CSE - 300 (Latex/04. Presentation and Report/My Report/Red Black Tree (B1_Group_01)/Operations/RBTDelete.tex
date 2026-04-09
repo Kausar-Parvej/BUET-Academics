@@ -1,0 +1,50 @@
+\begin{algorithm}[H]
+\SetAlgoLined
+\LinesNumbered
+
+            \textbf{RB Delete(T,z)}\\
+              \uIf{$left[z] = nil[T] \quad or \quad right[z] = nil[T]$}
+               {
+                    $y \gets z$\
+               }
+               \uElse
+               {
+                    $y \gets TREE-SUCCESSOR(z)$\
+               }
+\vspace{0.3cm}
+              \uIf{$left[y] \neq nil[T]$}
+               {
+                    $x \gets left[y]$\
+               }
+               \uElse
+               {
+                    $x \gets right[y]$\
+               }
+\vspace{0.3cm}
+             $p[x] \gets  p[y]$\\
+\vspace{0.3cm}
+              \uIf{$p[y] = nil[T]$}
+               {
+                    $root[T] \gets x$\
+               }
+               \uElseIf{$left[p[y]] \gets x$}
+               {
+                    $left[p[y]] \gets  x$\
+               }
+               \uElse
+               {
+                    $right[p[y]] \gets  x$\
+               }
+\vspace{0.3cm}
+              \uIf{$y \neq z$}
+               {
+                    $key[z]  key[y]]$\
+               }
+\vspace{0.3cm}
+              \uIf{$color[y] = BLACK$}
+               {
+                    RB-Insert-Fixup(T, z)
+               }
+\vspace{0.3cm}
+               $return \quad y$
+\end{algorithm}

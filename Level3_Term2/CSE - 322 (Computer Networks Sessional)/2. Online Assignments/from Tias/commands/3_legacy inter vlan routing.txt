@@ -1,0 +1,32 @@
+#-------------------------------------SWITCH CONFIGURATION-------------------------------------
+# vlan declaration
+config t
+vlan 10
+name ME
+vlan 20
+name CSE
+exit
+
+# Assign ports to respective VLANs
+config t
+int range f0/1, f0/3
+switchport mode access
+switchport access vlan 10
+int range f0/2, f0/4
+switchport mode access
+switchport access vlan 20
+
+
+#-------------------------------------ROUTER CONFIGURATION-------------------------------------
+
+config t
+interface gigabitethernet 0/0/0
+description LAN connection
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+
+config t
+interface gigabitethernet 0/0/1
+description LAN connection
+ip address 192.168.20.1 255.255.255.0
+no shutdown

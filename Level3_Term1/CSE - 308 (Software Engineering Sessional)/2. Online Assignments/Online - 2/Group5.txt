@@ -1,0 +1,47 @@
+.model small
+.stack 100h
+
+.data
+    num dw 5
+    result dw ?
+
+.code
+    main proc
+        mov ax, @data
+        mov ds, ax
+
+        mov ax, num
+        call factorial
+
+        mov result, ax
+
+        mov ah, 4ch
+        int 21h
+    main endp
+
+    factorial proc
+        push bp
+        mov bp, sp
+
+        mov ax, [bp+4]
+        cmp ax, 1
+        jbe base_case
+
+        dec ax
+        push ax
+        call factorial
+
+        mov bx, [bp+4]
+        mul bx
+
+        jmp end_factorial
+
+    base_case:
+        mov ax, 1
+
+    end_factorial:
+        pop bp
+        ret
+    factorial endp
+
+end main

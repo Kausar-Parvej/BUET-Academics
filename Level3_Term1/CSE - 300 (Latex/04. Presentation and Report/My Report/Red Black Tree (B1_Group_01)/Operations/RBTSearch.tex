@@ -1,0 +1,15 @@
+\begin{algorithm}[H]
+\SetAlgoLined
+\LinesNumbered
+
+    RBT\_Search(x,k)\\
+    
+     
+     \uIf{$x == nil$ or $k == x.key$}{
+     return $x$}\
+     \uIf{$k < x.key$}
+     {return RBT\_Search(x.left,k)}\
+     \uElse{return RBT\_Search(x.right,k)}\
+             
+ 
+\end{algorithm}

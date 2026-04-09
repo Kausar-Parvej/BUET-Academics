@@ -1,0 +1,8 @@
+	Operation     Time(ms)
+	----------    ----------
+
+	insert        0.0474
+	delete        0.5011
+	search        0.8646
+	traversal     0.0042
+	Total         1.4173

@@ -1,0 +1,30 @@
+
+
+\begin{forest}
+  my label/.style={label={[label distance=-5pt, font=\sffamily]-45:#1}},
+  for tree={
+    circle,
+    draw,
+    font=\sffamily,
+    parent anchor=south,
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}] (!u.parent anchor) [out=-90,in=90] to (.child anchor)\forestoption{edge label};
+    },
+    child anchor=north,
+  }
+  [50, my label=-1
+    [30, my label=-1
+    [19, for tree={my label=0}
+        [18]
+        [21]
+      ]
+      [31, my label=0
+      ]
+    ]
+    [60, for tree={my label=0}
+      [59]
+      [70]
+    ]
+  ]
+\end{forest}
+

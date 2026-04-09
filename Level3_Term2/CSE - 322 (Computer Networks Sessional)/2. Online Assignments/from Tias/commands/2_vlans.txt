@@ -1,0 +1,60 @@
+# Show the VLAN configuration in switch ***********************************************
+show vlan brief
+
+# Configure the switch virtual interface (SVI)
+# sets up an IP address on VLAN 1, turning it into a Layer 3 interface
+config t
+interface vlan 1
+ip address 192.168.10.20 255.255.255.0
+no shutdown
+
+# Remove IP address and shut down the VLAN interface
+config t
+interface vlan 1
+no ip address
+shutdown
+
+# Create VLANs ***********************************************
+config t
+vlan 10
+name ME
+vlan 20
+name CSE
+vlan 30
+name EEE
+
+# Assign ports to respective VLANs ***********************************************
+config t
+int f0/1
+switchport mode access
+switchport access vlan 10
+int f0/2
+switchport mode access
+switchport access vlan 20
+int f0/3
+switchport mode access
+switchport access vlan 30
+
+# for range of ports ***********************************************
+config t
+int range f0/1-2
+switchport mode access
+switchport access vlan 10
+int range f0/3-4
+switchport mode access
+switchport access vlan 20
+
+# Configure trunking on a specified interface ***********************************************
+config t
+int g0/1
+switchport mode trunk
+switchport trunk native vlan 1
+switchport trunk allowed vlan 10,20,30,1
+
+# Show the configuration of the trunk interface
+show interfaces gigabitethernet 0/1 switchport
+
+# delete the vlan.dat file to reset the VLAN configuration ***********************************************
+delete vlan.dat
+# then reload the switch
+reload

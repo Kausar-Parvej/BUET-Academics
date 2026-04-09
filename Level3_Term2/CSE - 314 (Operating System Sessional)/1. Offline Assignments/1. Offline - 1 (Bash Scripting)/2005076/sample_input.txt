@@ -1,0 +1,11 @@
+true
+zip
+c cpp
+100
+5
+./test_case/submissions
+2005001 2005010
+./test_case/submissions/expected_output.txt
+10
+./test_case/plagiarism.txt
+100

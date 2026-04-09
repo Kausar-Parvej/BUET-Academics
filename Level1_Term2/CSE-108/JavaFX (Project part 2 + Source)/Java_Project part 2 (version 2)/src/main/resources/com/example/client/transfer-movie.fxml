@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="521.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.TransferMovieController">
+   <children>
+      <TableView fx:id="movieTable" layoutX="21.0" layoutY="214.0" prefHeight="178.0" prefWidth="319.0">
+        <columns>
+          <TableColumn fx:id="movie" prefWidth="317.1999969482422" text="Select Movie" />
+        </columns>
+      </TableView>
+      <TableView fx:id="pcTable" layoutX="377.0" layoutY="69.0" prefHeight="323.0" prefWidth="415.0">
+         <columns>
+            <TableColumn fx:id="pcColumn" prefWidth="413.0" text="Select Production Company" />
+         </columns>
+      </TableView>
+      <Button layoutX="228.0" layoutY="453.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="37.0" prefWidth="112.0" text="Back" />
+      <Button layoutX="368.0" layoutY="453.0" mnemonicParsing="false" onAction="#onTransferClick" prefHeight="37.0" prefWidth="112.0" text="Transfer" />
+      <Label fx:id="thisPC" layoutX="204.0" layoutY="6.0" prefHeight="46.0" prefWidth="437.0">
+         <font>
+            <Font name="Times New Roman Bold Italic" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

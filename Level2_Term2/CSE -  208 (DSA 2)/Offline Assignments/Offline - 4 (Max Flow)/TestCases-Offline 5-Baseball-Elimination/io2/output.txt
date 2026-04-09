@@ -1,0 +1,6 @@
+Detroit is eliminated.
+They can win at most 49 + 27 = 76 games.
+New_York, Boston, Baltimore and Toronto have won a total of 278 games.
+They play each other 27 times.
+So on average, each of the teams in this group wins 305/4 = 76.25 games.
+

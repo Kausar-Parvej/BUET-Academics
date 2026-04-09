@@ -1,0 +1,7 @@
+package shakes;
+
+public enum ShakeType {
+    CHOCOLATE_SHAKE, COFFEE_SHAKE, STRAWBERRY_SHAKE, VANILLA_SHAKE, ZERO_SHAKE
+}
+
+

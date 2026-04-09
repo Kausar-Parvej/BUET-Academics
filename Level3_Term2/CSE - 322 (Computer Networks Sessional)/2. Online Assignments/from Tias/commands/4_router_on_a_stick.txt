@@ -1,0 +1,33 @@
+#-------------------------------------SWITCH CONFIGURATION-------------------------------------
+# vlan declaration
+config t
+vlan 10
+name ME
+vlan 20
+name CSE
+
+# Assign ports to respective VLANs
+config t
+int f0/1
+switchport mode access
+switchport access vlan 10
+int f0/2
+switchport mode access
+switchport access vlan 20
+
+# Trunking
+conf t
+int g0/1
+switchport mode trunk
+switchport trunk allowed vlan 10,20,1
+
+#-------------------------------------ROUTER CONFIGURATION-------------------------------------
+config t
+interface gigabitethernet 0/0/0.10
+encapsulation dot1Q 10
+ip address 192.168.10.1 255.255.255.0
+interface gigabitethernet 0/0/0.20
+encapsulation dot1Q 20
+ip address 192.168.20.1 255.255.255.0
+interface gigabitethernet 0/0/0
+no shutdown

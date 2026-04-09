@@ -1,0 +1,74 @@
+TCP Reset Attack - Complete Execution Commands
+BUET CSE406 Computer Security Project
+========================================================
+
+STATUS: ✅ SUCCESSFULLY TESTED AND WORKING!
+
+STEP-BY-STEP EXECUTION COMMANDS:
+========================================================
+
+STEP 1: Open Administrator PowerShell
+--------------------------------------
+1. Right-click on PowerShell
+2. Select "Run as Administrator"
+3. Navigate to project directory:
+
+cd "E:\BUET Academics\Level 4_Term 1\Lab Cources\CSE 406 - Computer Security Sessional\Project\tcp_reset_attack"
+
+STEP 2: Activate Virtual Environment
+------------------------------------
+venv\bin\activate
+
+(You should see "(venv)" prefix in your prompt)
+
+STEP 3: Verify Setup (Optional)
+-------------------------------
+python preflight_check.py
+
+(Should show 7/8 checks passed - psutil missing is OK)
+
+STEP 4: Execute TCP Reset Attack
+--------------------------------
+python src/tcp_reset_attack.py --target "10.18.34.1" --gateway "10.18.34.1"
+
+When prompted: Type YES to confirm attack
+
+STEP 5: Stop Attack
+-------------------
+Press Ctrl+C to stop the attack gracefully
+
+ALTERNATIVE COMMANDS:
+========================================================
+
+# With custom duration (5 minutes):
+python src/tcp_reset_attack.py --target "10.18.34.1" --gateway "10.18.34.1" --duration 5
+
+# Without safety checks (NOT RECOMMENDED):
+python src/tcp_reset_attack.py --target "10.18.34.1" --gateway "10.18.34.1" --no-safety
+
+# View all options:
+python src/tcp_reset_attack.py --help
+
+ATTACK VERIFICATION:
+========================================================
+✅ Target: 10.18.34.1 (Your network gateway)
+✅ Method: ARP Poisoning + TCP RST Injection  
+✅ Impact: YouTube traffic disruption confirmed
+✅ Safety: RFC 1918 private network validation
+✅ Duration: 30 minutes maximum (auto-stop)
+
+TROUBLESHOOTING:
+========================================================
+If MAC address errors occur:
+- Ensure running as Administrator
+- Virtual environment must be activated
+- Network target must be reachable
+
+SAFETY NOTES:
+========================================================
+⚠️  Only use on networks you own or have permission to test
+⚠️  This tool is for educational purposes (BUET CSE406)
+⚠️  Unauthorized network attacks are illegal
+⚠️  Always restore network state after testing
+
+🎯 PROJECT COMPLETED SUCCESSFULLY! 🎯

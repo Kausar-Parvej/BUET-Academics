@@ -1,0 +1,43 @@
+\begin{algorithm}[H]
+\SetAlgoLined
+\LinesNumbered
+
+            RB\_Delete\_Fixup(T,z)\\
+            
+             \While{(x $\neq$ root[T]) and (color[x] $=$ BLACK)}{
+                \uIf{$x = left[p[x]]$}
+                {
+                    $w \gets right[p[x]]$ \\
+                    \uIf{$color[w] \gets RED$}
+                    {
+                        $color[w] \gets BLACK$ \\
+                        $color[p[x]] \gets RED$ \\
+                        \textbf{LEFT-ROTATE(T, P[X])} \\
+                        $w \gets right[p[x]]$ \\
+                    }
+                    \uIf{color[left[w]] = BLACK and color[right[w]] $=$ BLACK}
+                    {
+                        $color[w] \gets RED$ \\
+                        $x \gets p[x$] \\
+                        
+                    }
+                    \uElseIf{color[right[w]] $=$ BLACK}
+                    {
+                        $color[left[w]] \gets BLACK$ \\
+                        $color[w] \gets RED$ \\
+                        \textbf{RIGHT-ROTATE(T, P[X])} \\
+                        $w \gets right[p[x]]$ \\
+                    }
+                    $color[w] \gets color[p[x$]] \\
+                    $color[p[x]] \gets BLACK$ \\
+                    $color[right[w]] \gets BLACK$ \\
+                    \textbf{LEFT-ROTATE(T, P[X])} \\
+                    $x \gets root[T]$
+                }
+                \uElse
+                {
+                    Same as \textbf{then} clause with \textit{right} and \textit{left} exchanged
+                }
+             }
+             $color[x] \gets BLACK$
+\end{algorithm}

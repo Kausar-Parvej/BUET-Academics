@@ -1,0 +1,77 @@
+# Both Routers are of 2901 series
+# NAT Router
+config t
+interface g0/0
+description LAN connection
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+
+config t
+interface g0/1
+description LAN connection
+ip address 192.168.20.1 255.255.255.0
+no shutdown
+
+config t
+int s0/0/0
+ip address 100.1.1.1 255.255.255.252
+clock rate 64000
+no shutdown
+
+# static default route configuration
+ip route 0.0.0.0 0.0.0.0 s0/0/0
+
+# ISP Router
+config t
+int s0/0/0
+ip address 100.1.1.2 255.255.255.252
+no shutdown
+
+config t
+int g0/0
+ip address 100.100.100.1 255.255.255.0
+no shutdown
+
+# static default route configuration
+ip route 0.0.0.0 0.0.0.0 s0/0/0
+
+#----------------------------------static nat configuration----------------------------------
+#(conf) Nat Router
+ip nat inside source static 192.168.10.254 209.165.201.5
+int s0/0/0
+ip address 192.168.1.2 255.255.255.252
+ip nat inside
+exit
+int s0/0/1
+ip address 209.165.200.1 255.255.255.252
+ip nat outside
+#----------------------------------dynamic nat configuration----------------------------------
+
+# Nat Router
+ip nat pool BUET-Pool 209.165.200.8 209.165.200.11 netmask 255.255.255.224
+access-list 1 permit 192.168.10.0 0.0.0.255 # Standard ACL
+access-list 1 permit 192.168.20.0 0.0.0.255 # Standard ACL
+ip nat inside source list 1 pool BUET-Pool
+ 
+int g0/0
+ip nat inside
+int g0/1
+ip nat inside
+int s0/0/0
+ip nat outside
+
+# For PAT
+ip nat inside source list 1 pool BUET-Pool overload
+
+
+# show ip nat translations ***************************************
+show ip nat trans
+
+# clears the NAT translations ***************************************
+clear ip nat trans
+
+# nat statistics 
+show ip nat statistics
+
+# clears the NAT statistics 
+clear ip nat statistics

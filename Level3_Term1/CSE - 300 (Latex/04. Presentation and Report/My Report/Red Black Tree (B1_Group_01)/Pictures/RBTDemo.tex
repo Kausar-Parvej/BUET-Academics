@@ -1,0 +1,26 @@
+\begin{tikzpicture}[->,>=stealth',level/.style={sibling distance = 3.8cm/#1,
+  level distance = 1.2cm}] 
+\node [arn_n] {33}
+    child{ node [arn_r] {15} 
+            child{ node [arn_n] {10} 
+            	child{ node [arn_r] {5} edge from parent node[above left]
+                         {$x$}} %for a named pointer
+							child{ node [arn_x] {}}
+            }
+            child{ node [arn_n] {20}
+							child{ node [arn_r] {18}}
+							child{ node [arn_x] {}}
+            }                            
+    }
+    child{ node [arn_r] {47}
+            child{ node [arn_n] {38} 
+							child{ node [arn_r] {36}}
+							child{ node [arn_r] {39}}
+            }
+            child{ node [arn_n] {51}
+							child{ node [arn_r] {49}}
+							child{ node [arn_x] {}}
+            }
+		}
+; 
+\end{tikzpicture}

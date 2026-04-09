@@ -1,0 +1,6 @@
+B is eliminated.
+They can win at most 48 + 1 = 49 games.
+A has won a total of 90 games.
+They play each other 0 times.
+So on average, each of the teams in this group wins 90/1 = 90 games.
+

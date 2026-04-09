@@ -1,0 +1,74 @@
+# Configuration Steps for Cisco Switch/Router
+
+# Change the hostname of the device **********************************************
+config t
+hostname cse-switch  
+
+# Set the password for the console line
+config t
+line console 0
+password cisco
+login
+
+# Set the password for the privileged EXEC mode
+config t
+enable secret cisco
+
+# Set the password for the VTY lines (Telnet/SSH access)
+config t
+line vty 0 4
+password cisco
+login
+
+# Show the current configuration of the VTY lines
+show running-config | section line vty
+
+# Show the current configuration stored in NVRAM ***********************************************
+show startup-config
+
+# Show the running configuration in RAM ***********************************************
+show running-config
+
+# Encrypt passwords in the configuration
+config t
+service password-encryption
+
+# Set the banner message of the day
+config t
+banner motd #Authorized Access Only!#
+
+# Save the running configuration to NVRAM ***********************************************
+copy run start
+
+# Erase the startup configuration in NVRAM ***********************************************
+erase startup-config
+
+# Reload the device to start with the default configuration ***********************************************
+reload
+
+# Configure the router interface for LAN connection ***********************************************
+config t
+interface gigabitethernet 0/0/0
+description LAN connection
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+
+# Configure another router interface for a different LAN connection ***********************************************
+config t
+interface gigabitethernet 0/0/1
+description LAN connection
+ip address 192.168.11.1 255.255.255.0
+no shutdown
+
+# Show the IP addresses of all interfaces ***********************************************
+show ip interface brief
+
+# Display the contents of the IP routing tables  
+show ip route
+
+# Display IPv4 statistics for router interfaces 
+show ip interface
+
+# Access the switch/router from a PC via Telnet
+telnet 192.168.1.20
+

@@ -1,0 +1,35 @@
+### Configure the LAN Interface on R1
+interface GigabitEthernet0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+
+### Configure the WAN Interface on R1 (Inter-Router Network)
+interface GigabitEthernet0/1
+ip address 10.0.0.1 255.255.255.252
+no shutdown
+
+### Add a Static Route on R1 to Reach the Server Network
+ip route 192.168.2.0 255.255.255.0 10.0.0.2
+
+### Configure the WAN Interface on R2 (Inter-Router Network)
+interface GigabitEthernet0/0
+ip address 10.0.0.2 255.255.255.252
+no shutdown
+
+### Configure the LAN Interface on R2 (Server Network)
+interface GigabitEthernet0/1
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+
+### Add a Static Route on R2 to Reach the PC Network
+ip route 192.168.1.0 255.255.255.0 10.0.0.1
+
+### ACL Configuration on Router R2 for Controlled Access
+access-list 100 permit ip host 192.168.1.10 host 192.168.2.10
+access-list 100 permit ip host 192.168.1.11 host 192.168.2.11
+access-list 100 permit ip host 192.168.1.12 host 192.168.2.11
+access-list 100 deny ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255
+
+### Apply ACL to WAN Interface on R2
+interface GigabitEthernet0/0
+ip access-group 100 in

@@ -1,0 +1,147 @@
+TCP Reset Attack - Complete Setup & Execution Guide
+BUET CSE406 Computer Security Project
+========================================================
+
+STATUS: ✅ SUCCESSFULLY TESTED AND WORKING!
+
+COMPLETE SETUP GUIDE FOR UBUNTU:
+========================================================
+
+STEP 1: Initial System Setup
+-----------------------------
+1. Open Terminal (Ctrl+Alt+T)
+2. Update system packages:
+   sudo apt update && sudo apt upgrade -y
+
+3. Install required system packages:
+   sudo apt install python3 python3-pip python3-venv git build-essential -y
+
+4. Install network tools:
+   sudo apt install net-tools iproute2 wireshark-common -y
+
+STEP 2: Download Project
+------------------------
+1. Navigate to desired directory:
+   cd ~/Desktop
+
+2. Clone or extract the project:
+   # If you have git repository:
+   git clone <repository-url> tcp_reset_attack
+   
+   # OR if you have project files:
+   # Extract the project zip file to ~/Desktop/tcp_reset_attack
+
+3. Navigate to project directory:
+   cd tcp_reset_attack
+
+STEP 3: Create Virtual Environment
+----------------------------------
+1. Create Python virtual environment:
+   python3 -m venv .venv
+
+2. Activate virtual environment:
+   source .venv/bin/activate
+
+   (You should see "(.venv)" prefix in your prompt)
+
+STEP 4: Install Dependencies
+-----------------------------
+1. Upgrade pip:
+   pip install --upgrade pip
+
+2. Install required packages:
+   pip install -r requirements.txt
+
+3. Verify installation:
+   python3 preflight_check.py
+
+   (Should show all checks passed)
+
+STEP 5: Network Configuration
+-----------------------------
+1. Find your network interface:
+   ip addr show
+
+2. Find your gateway IP:
+   ip route | grep default
+
+3. Note your network details:
+   - Interface name (e.g., wlan0, eth0)
+   - Your IP address 
+   - Gateway IP address
+   - Network range (e.g., 192.168.1.0/24)
+
+STEP 6: Execute TCP Reset Attack (ROOT REQUIRED)
+------------------------------------------------
+⚠️  IMPORTANT: Must run with sudo for packet injection
+
+1. Basic attack on local network:
+   sudo .venv/bin/python3 src/tcp_reset_attack.py --target <GATEWAY_IP>
+
+2. When prompted: Type YES to confirm attack
+
+3. Open YouTube in browser and play a video to test disruption
+
+STEP 7: Stop Attack
+-------------------
+Press Ctrl+C to stop the attack gracefully
+
+REAL YOUTUBE DEMONSTRATION:
+========================================================
+✅ Method: Targets actual YouTube video streaming
+✅ Impact: Video buffering/connection drops  
+✅ Safety: Local network only
+✅ Duration: User controlled (Ctrl+C to stop)
+
+EXAMPLE EXECUTION:
+========================================================
+# Replace 192.168.1.1 with your actual gateway IP
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target 192.168.1.1
+
+# Alternative with specific interface
+sudo .venv/bin/python3 src/tcp_reset_attack.py --target 192.168.1.1 --interface wlan0
+
+TROUBLESHOOTING UBUNTU:
+========================================================
+Permission Errors:
+- Always use 'sudo' for attack execution
+- Ensure virtual environment is activated
+
+Network Issues:
+- Check network interface with: ip addr show
+- Verify gateway with: ip route | grep default
+- Test connectivity with: ping <gateway_ip>
+
+Python Environment:
+- If .venv not working: python3 -m venv .venv
+- If packages missing: pip install -r requirements.txt
+- Python version: python3 --version (needs 3.7+)
+
+Package Installation Issues:
+- Try: pip install --upgrade setuptools wheel
+- For scapy issues: sudo apt install python3-dev libpcap-dev
+
+QUICK START COMMANDS:
+========================================================
+# Complete setup in one go:
+sudo apt update && sudo apt install python3 python3-pip python3-venv -y
+cd ~/Desktop/tcp_reset_attack
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# Execute attack:
+sudo .venv/bin/python3 real_youtube_demo.py
+
+SAFETY NOTES:
+========================================================
+⚠️  Only use on networks you own or have permission to test
+⚠️  This tool is for educational purposes (BUET CSE406)
+⚠️  Unauthorized network attacks are illegal
+⚠️  Always restore network state after testing
+⚠️  Use Ctrl+C to stop attacks immediately
+⚠️  Root/sudo access required for packet injection
+
+🎯 PROJECT READY FOR UBUNTU DEMONSTRATION! 🎯
+
+For detailed command reference, see: commands.txt

@@ -1,0 +1,9 @@
+Law এর বই এর 2.6 section এ 
+
+Multiteller bank WITH JOCKEYING 
+
+এই টপিক এর উপর সিমুলেশন এর পরের offline, Sir class এ বলসিলেন। এই কাজটা Process Interaction Approach এ আমাদেরকে করতে হবে।
+
+আগের গুলোর মতো এইটায় সরাসরি কোড নাই বইতে 😭। বইতে যেটা আছে সেটা event scheduling approach এ। আবার এই Process Interaction Approach এর তেমন কোনো reference code নাই। 
+
+তাই স্যার বলসেন, প্রথমে MM1 queue simulation টা এই approach এ করতে, তারপরে ওইভাবে এই New Problem টা করতে।

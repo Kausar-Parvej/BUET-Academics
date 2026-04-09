@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="587.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.MenuViewController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="587.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="787.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9578947424888611" green="0.017738791182637215" blue="0.017738791182637215" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.3456221198156686">
+                     <color>
+                        <Color red="0.3150409460067749" green="0.821052610874176" blue="0.042573098093271255" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.03331594914197922" green="0.02590000070631504" blue="0.3700000047683716" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Button layoutX="47.0" layoutY="99.0" mnemonicParsing="false" onAction="#onRecentMovieClick" prefHeight="35.0" prefWidth="138.0" text="Most Recent Movie" textFill="RED">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.33" specularConstant="0.0" specularExponent="22.2" surfaceScale="4.71">
+               <bumpInput>
+                  <Shadow>
+                     <input>
+                        <Shadow />
+                     </input>
+                  </Shadow>
+               </bumpInput>
+               <light>
+                  <Light.Distant azimuth="236.56" elevation="130.87">
+                     <color>
+                        <Color red="0.007407407276332378" green="0.9669135808944702" blue="1.0" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="318.0" layoutY="99.0" mnemonicParsing="false" onAction="#onHighestGrossingMovieClick" prefHeight="35.0" prefWidth="166.0" text="Highest Grossing Movie" textFill="RED">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.33" specularConstant="0.0" specularExponent="22.2" surfaceScale="5.25">
+               <bumpInput>
+                  <Shadow>
+                     <input>
+                        <Shadow />
+                     </input>
+                  </Shadow>
+               </bumpInput>
+               <light>
+                  <Light.Distant azimuth="229.95" elevation="134.17">
+                     <color>
+                        <Color red="0.007407407276332378" green="0.9669135808944702" blue="1.0" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="634.0" layoutY="99.0" mnemonicParsing="false" onAction="#onTotalProfitClick" prefHeight="35.0" prefWidth="138.0" text="Total Profit" textFill="RED">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.33" specularConstant="0.0" specularExponent="22.2" surfaceScale="5.35">
+               <bumpInput>
+                  <Shadow>
+                     <input>
+                        <Shadow />
+                     </input>
+                  </Shadow>
+               </bumpInput>
+               <light>
+                  <Light.Distant azimuth="206.84" elevation="134.17">
+                     <color>
+                        <Color red="0.007407407276332378" green="0.9669135808944702" blue="1.0" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TableView fx:id="table" layoutX="14.0" layoutY="159.0" prefHeight="288.0" prefWidth="758.0">
+        <columns>
+          <TableColumn fx:id="name" prefWidth="163.60000228881836" text="Name" />
+          <TableColumn fx:id="year" prefWidth="125.60002136230469" text="Released Year" />
+            <TableColumn fx:id="genre" prefWidth="222.39996337890625" text="Genre" />
+            <TableColumn fx:id="runTime" prefWidth="75.20001220703125" text="Run Time" />
+            <TableColumn fx:id="budget" prefWidth="89.0" text="Budget" />
+            <TableColumn fx:id="revenue" prefWidth="82.39996337890625" text="Revenue" />
+        </columns>
+         <effect>
+            <Lighting diffuseConstant="1.33" specularConstant="0.0" specularExponent="22.2" surfaceScale="2.69">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </TableView>
+      <Button layoutX="213.0" layoutY="484.0" mnemonicParsing="false" onAction="#onTransferMovieClick" prefHeight="35.0" prefWidth="138.0" text="Transfer Movie" textFill="#430896">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.42" specularConstant="0.0" specularExponent="26.97" surfaceScale="1.87">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant azimuth="94.54" elevation="137.48">
+                     <color>
+                        <Color red="1.0" green="0.9870689511299133" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="388.0" layoutY="484.0" mnemonicParsing="false" onAction="#onAddMovieClick" prefHeight="35.0" prefWidth="138.0" text="Add Movie" textFill="#430896">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.42" specularConstant="0.0" specularExponent="26.97" surfaceScale="1.87">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant azimuth="94.54" elevation="137.48">
+                     <color>
+                        <Color red="1.0" green="0.9870689511299133" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="306.0" layoutY="537.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="35.0" prefWidth="138.0" text="Back">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.57">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant elevation="38.39">
+                     <color>
+                        <Color red="1.0" green="0.3296296298503876" blue="0.3296296298503876" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="thisPC" layoutX="270.0" layoutY="14.0" prefHeight="52.0" prefWidth="347.0">
+         <font>
+            <Font name="Times New Roman Bold Italic" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,11 @@
+id,marks,marks_deducted,total_marks,remarks
+2005001,90,10,80,"Issue case #1: Submission is a folder. Mark deducted for mismatch. All Checked"
+2005002,0,10,-10,"Issue case #2: Archive type not allowed. "
+2005003,0,10,-10,"Issue case #3: Invalid programming language. "
+2005004,0,10,-10,"Issue case #3: Invalid programming language. "
+2005005,80,0,80,"Mark deducted for mismatch. All Checked"
+2005006,0,10,-10,"Issue case #4: Folder name does not match student ID. "
+2005007,50,0,50,"Mark deducted for mismatch. All Checked"
+2005008,80,0,80,"Mark deducted for mismatch. All Checked"
+2005009,90,0,-100,"Mark deducted for mismatch. Plagiarism Detected. All Checked"
+2005010,0,10,-10,"Issue case #3: Invalid programming language. "
